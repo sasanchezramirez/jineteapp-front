@@ -1,0 +1,42 @@
+.body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #181c2a;
+}
+
+.login-box {
+  width: 300px;
+  padding: 20px;
+  background-color: #232a3a;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+
+.input{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2f3b4c;
+  color: #fff;
+  box-sizing: border-box;
+  font-size: 13px;
+}
+
+.submit-button{
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #575f6f; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto del botón */
+  cursor: pointer;
+}
+.submit-button:hover {
+  background-color: #464c5c;
+}
