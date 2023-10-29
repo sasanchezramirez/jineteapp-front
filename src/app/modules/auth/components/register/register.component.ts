@@ -18,7 +18,8 @@ export class RegisterComponent {
     this.user = {
       'id': 0,
       'email': '',
-      'pwd': ''
+      'pwd': '',
+      'username': ''
     }
   }
 

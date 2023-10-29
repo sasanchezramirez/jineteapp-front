@@ -4,6 +4,17 @@
 
     <h1 style="margin-top:  0px;">Getting started</h1>
 
+    <label for="username"
+    class="label-input">Username</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="text"
+    class="input"
+    name="username"
+    required="true"
+    placeholder="Enter your username"
+    [(ngModel)]="user.username">
+
     <label for="email"
     class="error-message"
     [hidden]="validEmail">Please enter a valid email</label>
