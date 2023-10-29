@@ -1,1 +1,75 @@
-<p>register works!</p>
+<body class="body">
+  <form class="register-box"
+  #registerForm = "ngForm">
+
+    <h1 style="margin-top:  0px;">Getting started</h1>
+
+    <label for="email"
+    class="error-message"
+    [hidden]="validEmail">Please enter a valid email</label>
+
+    <label for="email"
+    class="label-input"
+    [hidden]="!validEmail">Email</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="email"
+    class="input"
+    name="email"
+    required="true"
+    placeholder="Enter your email"
+    [(ngModel)] = "user.email"
+    [ngClass]="{
+      'invalid':!validEmail
+    }">
+
+    <label for="password1"
+    class="error-message"
+    [hidden]="validPwd">Please enter a correct password</label>
+
+    <label for="password1"
+    class="label-input"
+    [hidden]="!validPwd">New password</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="password"
+    class="input"
+    name="password1"
+    required="true"
+    placeholder="Enter a password"
+    [(ngModel)]="user.pwd"
+    [ngClass]="{
+      'invalid':!validPwd
+    }">
+
+    <label for="password2"
+    class="error-message"
+    [hidden]="matchPwd">Your password doesn't match</label>
+
+    <label for="password2"
+    class="label-input"
+    [hidden]="!matchPwd">Validate your password</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="password"
+    class="input"
+    name="password2"
+    required="true"
+    placeholder="Enter your password again"
+    [(ngModel)]="secondPwd"
+    [ngClass]="{
+      'invalid': !matchPwd
+    }">
+
+    <button
+    class="submit-button"
+    type="submit"
+    [disabled] = "registerForm.invalid"
+    (submit)="user"
+    [ngClass]="{
+      'invalid':registerForm.invalid
+    }"
+    (click)="onRegister()">
+    Go!</button>
+  </form>
+</body>
