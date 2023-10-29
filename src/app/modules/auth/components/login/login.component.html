@@ -1,14 +1,59 @@
 <body class="body">
-  <div class="login-box">
-    <h1>Login</h1>
+
+  <form class="login-box"
+    #loginForm = "ngForm">
+
+    <h1 style="margin-top:  0px;">Login</h1>
+
+    <label for="email"
+    class="error-message"
+    [hidden]="validEmail">Please validate your email</label>
+
+    <label for="email"
+    class="label-input"
+    [hidden]="!validEmail">Email</label>
+    <div style="margin-top: 3px;"></div>
+
     <input class="input"
+    name="email"
+    required="true"
     type="email"
-    placeholder="Enter your email">
+    placeholder="Enter your email"
+    [(ngModel)]="user.email"
+    [ngClass]="{
+      'invalid':!validEmail
+    }">
+
+    <label for="email"
+    class="error-message"
+    [hidden]="validPwd">Please validate your password</label>
+
+    <label for="email"
+    class="label-input"
+    [hidden]="!validPwd">Password</label>
+    <div style="margin-top: 3px;"></div>
+
+
     <input class="input"
+    name="pwd"
+    required="true"
     type="password"
-    placeholder="Enter your password">
+    placeholder="Enter your password"
+    [(ngModel)]="user.pwd"
+    [ngClass]="{
+      'invalid':!validPwd
+    }">
+
     <button
     class="submit-button"
-    type="submit">Go!</button>
-  </div>
+    type="submit"
+    [disabled] = "loginForm.invalid"
+    (submit)="user"
+    [ngClass]="{
+      'invalid':loginForm.invalid
+    }"
+    (click)="onLogin()">
+    Go!</button>
+  </form>
+
 </body>

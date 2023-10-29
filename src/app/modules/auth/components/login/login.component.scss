@@ -8,12 +8,17 @@
 }
 
 .login-box {
-  width: 300px;
-  padding: 20px;
+  width: 250px;
+  padding: 35px;
+  margin-bottom: 140px;
   background-color: #232a3a;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #fff;
+}
+
+.label-input{
+  font-size: 12px;
 }
 
 .input{
@@ -26,16 +31,31 @@
   color: #fff;
   box-sizing: border-box;
   font-size: 13px;
+
+  &.invalid{
+    border: 2px solid #F44336;
+  }
+}
+
+.error-message{
+  color: #F44336;
+  font-size: 12px;
+
 }
 
 .submit-button{
   width: 100%;
+  margin-top: 18px;
   padding: 10px;
   border: none;
   border-radius: 5px;
   background-color: #575f6f; /* Color de fondo del botón */
   color: #ffffff; /* Color del texto del botón */
   cursor: pointer;
+
+  &.invalid{
+    background-color: #464c5c;
+  }
 }
 .submit-button:hover {
   background-color: #464c5c;
