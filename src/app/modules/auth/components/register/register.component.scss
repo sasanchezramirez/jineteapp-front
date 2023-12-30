@@ -7,18 +7,14 @@
   background-color: #181c2a;
 }
 
-.login-box {
-  width: 250px;
+.register-box {
+  width: 350px;
   padding: 35px;
-  margin-bottom: 140px;
+  margin-bottom: 100px;
   background-color: #232a3a;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #fff;
-}
-
-.label-input{
-  font-size: 12px;
 }
 
 .input{
@@ -37,11 +33,10 @@
   }
 }
 
-.error-message{
-  color: #F44336;
+.label-input{
   font-size: 12px;
-
 }
+
 
 .submit-button{
   width: 100%;
@@ -59,4 +54,10 @@
 }
 .submit-button:hover {
   background-color: #464c5c;
+}
+
+.error-message{
+  color: #F44336;
+  font-size: 12px;
+
 }

@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+.body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #181c2a;
+  font-family: 'Inconsolata', monospace;
+}/* You can add global styles to this file, and also import other style files */
