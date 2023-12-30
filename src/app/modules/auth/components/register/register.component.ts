@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../models/user.model';
+import { AuthService } from '../../../../services/auth/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,7 @@ export class RegisterComponent {
   public validPwd: boolean = true;
   public matchPwd: boolean = true;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.user = {
       'id': 0,
       'email': '',
@@ -23,11 +25,23 @@ export class RegisterComponent {
     }
   }
 
-  onRegister(){
+  onRegister() {
     this.isEmailValid(this.user.email)
     this.isPwdValid(this.user.pwd)
     this.didPwdMatch(this.user.pwd, this.secondPwd)
-    console.log(this.user)
+
+    if (this.validEmail && this.validPwd && this.matchPwd) {
+      this.authService.register(this.user).subscribe({
+        next: response => {
+          console.log('Registro exitoso', response);
+        },
+        error: error => {
+          console.error('Error en el registro', error);
+        }
+    });
+    } else {
+      console.log('Validación fallida');
+    }
   }
 
   isEmailValid(email: string){
