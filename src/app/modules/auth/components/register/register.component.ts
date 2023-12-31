@@ -21,7 +21,8 @@ export class RegisterComponent {
       'id': 0,
       'email': '',
       'pwd': '',
-      'username': ''
+      'username': '',
+      'name': ''
     }
   }
 

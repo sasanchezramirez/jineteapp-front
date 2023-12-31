@@ -15,6 +15,17 @@
     placeholder="Enter your username"
     [(ngModel)]="user.username">
 
+    <label for="name"
+    class="label-input">Name and last name</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="text"
+    class="input"
+    name="name"
+    required="true"
+    placeholder="Enter your name"
+    [(ngModel)]="user.name">
+
     <label for="email"
     class="error-message"
     [hidden]="validEmail">Please enter a valid email</label>
