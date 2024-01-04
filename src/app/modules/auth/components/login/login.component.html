@@ -19,7 +19,7 @@
     required="true"
     type="email"
     placeholder="Enter your email"
-    [(ngModel)]="user.email"
+    [(ngModel)]="login.email"
     [ngClass]="{
       'invalid':!validEmail
     }">
@@ -39,16 +39,14 @@
     required="true"
     type="password"
     placeholder="Enter your password"
-    [(ngModel)]="user.password"
-    [ngClass]="{
-      'invalid':!validPwd
-    }">
+    [(ngModel)]="login.password"
+    >
 
     <button
     class="submit-button"
     type="submit"
     [disabled] = "loginForm.invalid"
-    (submit)="user"
+    (submit)="login"
     [ngClass]="{
       'invalid':loginForm.invalid
     }"
