@@ -88,6 +88,7 @@
     type="submit"
     [disabled] = "registerForm.invalid"
     (submit)="user"
+    [hidden]="sendigRegister"
     [ngClass]="{
       'invalid':registerForm.invalid
     }"

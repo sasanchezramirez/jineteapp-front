@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../../../services/auth/auth.service';
+import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,8 +17,9 @@ export class RegisterComponent {
   public validEmail: boolean = true;
   public validPwd: boolean = true;
   public matchPwd: boolean = true;
+  public sendigRegister: boolean = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.user = {
       'email': '',
       'password': '',
@@ -30,9 +33,12 @@ export class RegisterComponent {
     this.isPwdValid(this.user.password)
     this.didPwdMatch(this.user.password, this.secondPwd)
 
+
     if (this.validEmail && this.validPwd && this.matchPwd) {
+      this.sendigRegister = true;
       this.authService.register(this.user).subscribe({
         next: response => {
+          this.router.navigate(['/home'])
           console.log('Registro exitoso', response);
         },
         error: error => {

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../modules/auth/models/user.model';
+import { Login } from 'src/app/modules/auth/models/login.model';
+import { Observable } from 'rxjs';
+import { enviroment } from 'src/enviroments/enviroments.prod';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,10 @@ export class AuthService {
 
   register(user: User) {
     // URL del API
-    const apiUrl = 'http://localhost:8080/api/v1/auth/register'
-    return this.http.post(apiUrl, user);
+    return this.http.post(`${enviroment.apiUrl}/auth/register`, user);
+  }
+
+  login(login: Login): Observable<any> {
+    return this.http.post<any>(`${enviroment.apiUrl}/auth/login`, login);
   }
 }
