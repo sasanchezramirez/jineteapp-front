@@ -18,9 +18,8 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService) {
     this.user = {
-      'id': 0,
       'email': '',
-      'pwd': '',
+      'password': '',
       'username': '',
       'name': ''
     }
@@ -28,8 +27,8 @@ export class RegisterComponent {
 
   onRegister() {
     this.isEmailValid(this.user.email)
-    this.isPwdValid(this.user.pwd)
-    this.didPwdMatch(this.user.pwd, this.secondPwd)
+    this.isPwdValid(this.user.password)
+    this.didPwdMatch(this.user.password, this.secondPwd)
 
     if (this.validEmail && this.validPwd && this.matchPwd) {
       this.authService.register(this.user).subscribe({
