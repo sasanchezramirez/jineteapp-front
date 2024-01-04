@@ -11,7 +11,7 @@ export class AuthService {
 
   register(user: User) {
     // URL del API
-    const apiUrl = 'https://tuapi.com/register';
+    const apiUrl = 'http://localhost:8080/api/v1/auth/register'
     return this.http.post(apiUrl, user);
   }
 }

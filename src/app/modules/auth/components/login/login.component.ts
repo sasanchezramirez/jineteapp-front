@@ -13,16 +13,15 @@ export class LoginComponent {
 
   constructor() {
     this.user = {
-      id: 0,
       email: '',
-      pwd: ''
+      password: ''
     }
   }
 
   onLogin(){
     this.isEmailValid(this.user.email);
-    this.isPwdValid(this.user.pwd);
-    if (this.isEmailValid(this.user.email) && this.isPwdValid(this.user.pwd)) {
+    this.isPwdValid(this.user.password);
+    if (this.isEmailValid(this.user.email) && this.isPwdValid(this.user.password)) {
       console.log(this.user);
     } else {
       console.log('Invalid Email');
