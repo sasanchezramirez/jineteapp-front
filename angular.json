@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "jineteapp-front:build:production"
+              "buildTarget": "jineteapp-front:build:production"
             },
             "development": {
-              "browserTarget": "jineteapp-front:build:development"
+              "buildTarget": "jineteapp-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jineteapp-front:build"
+            "buildTarget": "jineteapp-front:build"
           }
         },
         "test": {
