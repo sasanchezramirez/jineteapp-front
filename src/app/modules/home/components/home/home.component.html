@@ -1,6 +1,24 @@
-<p>home works!</p>
+<aside class="navbar-vertical" [class.active]="isSidebarActive">
 
-<button  class="submit-button"
-[routerLink]="'auth/register'"
->Regístrate
-</button>
+  <button (click)="toggleSidebar()" class="toggle-btn">
+    <i>
+      <img src="../../../../../assets/icons/caret-right.svg" alt="">
+    </i>
+  </button>
+
+  <nav>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/graph-up.svg" alt="">
+      Dashboard</a>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/clock-history.svg" alt="">
+      Historial</a>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/wallet.svg" alt="">
+      Nuevos Registros</a>
+  </nav>
+</aside>
+
+<div class="main-content" [class.active]="isSidebarActive">
+  <!-- Tu contenido aquí -->
+</div>

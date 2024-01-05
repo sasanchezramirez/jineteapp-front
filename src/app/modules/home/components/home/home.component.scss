@@ -1,17 +1,53 @@
-.submit-button{
-  width: 100%;
-  margin-top: 18px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #575f6f; /* Color de fondo del botón */
-  color: #ffffff; /* Color del texto del botón */
-  cursor: pointer;
+.navbar-vertical {
+  position: fixed;
+  left: 0;
+  width: 250px; // Ancho del sidebar
+  height: 100%;
+  background: #0e1018;
+  margin-top: -12px;
+  padding-top: 12px;
+  padding-left: 10px;
+  transition: transform 0.3s;
+  transform: translateX(-100%); // Inicia fuera de la pantalla
+  z-index: 1000; // Asegúrate de que esté sobre otros elementos
 
-  &.invalid{
-    background-color: #464c5c;
+  &.active {
+    transform: translateX(0); // Mueve el sidebar a la vista
+  }
+
+  .toggle-btn {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  .nav-item {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+
+    &:hover {
+      background: darken(#333, 10%);
+    }
   }
 }
-.submit-button:hover {
-  background-color: #464c5c;
+
+.main-content {
+  transition: margin-left 0.3s;
+  padding-left: 50px; // Asegúrate de tener suficiente espacio para el botón cuando el sidebar esté cerrado
+
+  &.active {
+    margin-left: 250px; // Ajusta este valor al ancho del sidebar
+  }
 }
