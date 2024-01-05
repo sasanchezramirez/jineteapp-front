@@ -1,17 +1,119 @@
-.submit-button{
-  width: 100%;
-  margin-top: 18px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #575f6f; /* Color de fondo del botón */
-  color: #ffffff; /* Color del texto del botón */
-  cursor: pointer;
+.navbar-vertical {
+  position: fixed;
+  left: 0;
+  width: 250px; // Ancho del sidebar
+  height: 100%;
+  background: #0e1018;
+  margin-top: -12px;
+  padding-top: 12px;
+  padding-left: 10px;
+  transition: transform 0.3s;
+  transform: translateX(-100%); // Inicia fuera de la pantalla
+  z-index: 1000; // Asegúrate de que esté sobre otros elementos
 
-  &.invalid{
-    background-color: #464c5c;
+  &.active {
+    transform: translateX(0); // Mueve el sidebar a la vista
+  }
+
+  .toggle-btn {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+  .nav-item {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+
+    &:hover {
+      background: darken(#333, 10%);
+    }
   }
 }
-.submit-button:hover {
-  background-color: #464c5c;
+
+.main-content {
+  padding: 2rem;
+  transition: margin-left 0.3s;
+  margin-left: 250px; // Tamaño del sidebar abierto
+
+  &.active {
+    margin-left: 0; // Tamaño del sidebar cerrado
+  }
+
+  .grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center; // Espacio entre los elementos de la cuadrícula
+
+    .grid-item {
+      flex: 1 1 45%;
+      min-width: 300px;
+      border-radius: 8px;
+      border: 2px;
+      border-color: #fff;
+      border-style: groove;
+      padding: 1rem;
+      height: 150px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: larger;
+
+      &:not(:last-child) {
+        margin-bottom: 2rem; // Agrega espacio debajo si no es el último elemento
+      }
+
+      // Clase para que el gráfico de tarta tome el ancho completo en una fila
+      &.full-width {
+        flex-basis: 100%;
+      }
+    }
+  }
+
+  progress {
+    width: 100%;
+    appearance: none; // Remueve la apariencia predeterminada
+    height: 20px; // Altura más grande para la barra de progreso
+    color: #fff; // Color de la barra de progreso
+    background-color: #333333; // Fondo de la barra
+
+    &::-webkit-progress-bar {
+      background-color: #333333;
+    }
+
+    &::-webkit-progress-value {
+      background-color: #fff;
+    }
+
+    &::-moz-progress-bar {
+      background-color: #fff;
+    }
+  }
+
+  progress:hover {
+    background-color: #444444;
+  }
+
+  @media (max-width: 768px) {
+    // En pantallas más pequeñas, cada elemento de la cuadrícula toma el ancho completo
+    .grid-container .grid-item {
+      flex-basis: 100%;
+    }
+  }
 }
+

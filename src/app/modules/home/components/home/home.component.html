@@ -1,6 +1,41 @@
-<p>home works!</p>
+<aside class="navbar-vertical" [class.active]="isSidebarActive">
 
-<button  class="submit-button"
-[routerLink]="'auth/register'"
->Regístrate
-</button>
+  <button (click)="toggleSidebar()" class="toggle-btn">
+    <i>
+      <img src="../../../../../assets/icons/caret-right.svg" alt="">
+    </i>
+  </button>
+
+  <nav>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/graph-up.svg" alt="">
+      Dashboard</a>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/clock-history.svg" alt="">
+      Historial</a>
+    <a href="#" class="nav-item">
+      <img src="../../../../../assets/icons/wallet.svg" alt="">
+      Nuevos Registros</a>
+  </nav>
+</aside>
+
+<div class="main-content" [class.active]="!isSidebarActive">
+  <div class="grid-container">
+    <div class="grid-item">
+      <label for="progressBar">Progreso de jineteada</label>
+      <progress id="progressBar" value="70" max="100"></progress>
+      <span>{{ progressBarValue }}%</span>
+    </div>
+    <div class="grid-item">Puntos Colombia generados:
+      <h1>350000</h1>
+    </div>
+    <div class="grid-item">Contenido 3</div>
+    <div class="grid-item">
+      <canvas baseChart [data]="pieChartData" [type]="pieChartType">
+      </canvas>
+    </div>
+    <div class="grid-item full-width">
+    </div>
+  </div>
+</div>
+
