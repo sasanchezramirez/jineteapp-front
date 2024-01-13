@@ -12,6 +12,9 @@ export class LoginComponent {
   public login: Login;
   validEmail: boolean = true;
   validPwd: boolean = true;
+  isLoading: boolean = false;
+  userFound: boolean = true;
+  correctPwd: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) {
     this.login = {
@@ -22,6 +25,7 @@ export class LoginComponent {
 
   onLogin(){
     if (this.isEmailValid(this.login.email)) {
+      this.isLoading = true;
       this.authService.login(this.login).subscribe(
         response => {
           if (response.success) {
@@ -29,11 +33,16 @@ export class LoginComponent {
             localStorage.setItem('accessToken', response.data.accessToken);
             this.router.navigate(['/home'])
           } else {
-            console.log('Login fallido');
+            this.isLoading = false;
+            if (response && response.code === "001") {
+              this.userFound = false;
+              console.log(response.message);
+            }
+            if (response && response.code === "002") {
+              this.correctPwd = false;
+              console.log(response.message);
+            }
           }
-        },
-        error => {
-          console.log('Error en el login', error);
         }
       );
     } else {

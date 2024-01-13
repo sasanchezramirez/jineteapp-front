@@ -8,10 +8,13 @@
     <label for="email"
     class="error-message"
     [hidden]="validEmail">Please validate your email</label>
+    <label for="email"
+    class="error-message"
+    [hidden]="userFound">This user dosen't exist</label>
 
     <label for="email"
     class="label-input"
-    [hidden]="!validEmail">Email</label>
+    [hidden]="!validEmail || !userFound">Email</label>
     <div style="margin-top: 3px;"></div>
 
     <input class="input"
@@ -29,8 +32,12 @@
     [hidden]="validPwd">Please validate your password</label>
 
     <label for="email"
+    class="error-message"
+    [hidden]="correctPwd">Wrong password</label>
+
+    <label for="email"
     class="label-input"
-    [hidden]="!validPwd">Password</label>
+    [hidden]="!validPwd || !correctPwd">Password</label>
     <div style="margin-top: 3px;"></div>
 
 
@@ -41,10 +48,13 @@
     placeholder="Enter your password"
     [(ngModel)]="login.password"
     >
-
+    <div class="loader-container">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
     <button
     class="submit-button"
     type="submit"
+    [hidden]="isLoading"
     [disabled] = "loginForm.invalid"
     (submit)="login"
     [ngClass]="{
@@ -55,3 +65,6 @@
   </form>
 
 </body>
+
+
+
