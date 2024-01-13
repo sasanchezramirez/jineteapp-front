@@ -1,1 +1,77 @@
-<app-sidebar></app-sidebar>
+<app-sidebar
+(sidebarToggle)="handleSidebarToggle($event)">
+</app-sidebar>
+
+<div class="main-content" [class.active]="!isSidebarActive">
+
+<div class="accordion-container">
+  <div [class.open]="activeAccordion === 'form1'" class="accordion-item">
+    <button (click)="toggleAccordion('form1')" class="accordion-header">Jineteo Transaction</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'form1'">
+      <div class="acordion-form">
+        <form #jinenteoTransaction = "ngForm">
+          <label for="amount"
+          class="label-input">Amount</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="amount"
+          required="true"
+          placeholder="Amount of transaction"
+          [(ngModel)]="jineteo.amount">
+
+          <label for="misses"
+          class="label-input">Any misses jineteando?</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="misses"
+          required="true"
+          placeholder="Amont of misses"
+          [(ngModel)]="jineteo.misses">
+
+          <label for="observation"
+          class="label-input">Observation</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="text"
+          class="input"
+          name="observation"
+          required="false"
+          placeholder="Any observation about transaction"
+          [(ngModel)]="jineteo.observation">
+
+          <label for="date"
+          class="label-input">Date</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="date"
+          class="input"
+          name="date"
+          required="true"
+          placeholder="Date of transaction"
+          [(ngModel)]="jineteo.date">
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div [class.open]="activeAccordion === 'form2'" class="accordion-item">
+    <button (click)="toggleAccordion('form2')" class="accordion-header">Capital Payment</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'form2'">
+      <div class="grid-item">Puntos Colombia generados:
+        <h1>350000</h1>
+      </div>
+      <form>
+        <!-- Campos del formulario 2 -->
+      </form>
+    </div>
+  </div>
+</div>
+
+</div>
+
+

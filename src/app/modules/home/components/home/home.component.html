@@ -1,4 +1,6 @@
-<app-sidebar></app-sidebar>
+<app-sidebar
+(sidebarToggle)="handleSidebarToggle($event)">
+</app-sidebar>
 
 <div class="main-content" [class.active]="!isSidebarActive">
   <div class="grid-container">

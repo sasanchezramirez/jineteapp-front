@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../../../services/auth/auth.service';
-import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 
 
