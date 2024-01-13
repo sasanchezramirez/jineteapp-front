@@ -5,7 +5,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { NewTransactionComponent } from './components/new-transaction/new-transaction.component';
-
+import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { NewTransactionComponent } from './components/new-transaction/new-transa
   imports: [
     CommonModule,
     HomeRoutingModule,
-    NgChartsModule
+    NgChartsModule,
+    SidebarComponent
   ]
 })
 export class HomeModule { }

@@ -18,6 +18,6 @@ import { LoaderComponent } from 'src/app/shared/loader/loader.component';
     AuthRoutingModule,
     FormsModule,
     LoaderComponent
-  ]
+    ]
 })
 export class AuthModule { }
