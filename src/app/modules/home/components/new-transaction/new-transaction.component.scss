@@ -1,7 +1,7 @@
 
 .main-content {
   padding: 2rem;
-  transition: margin-left 0.3s;
+  transition: margin-left 0.8s;
   margin-left: 250px; // Tamaño del sidebar abierto
 
   &.active {
@@ -51,6 +51,7 @@
     flex-grow: 1;
     margin-right: 20px;
     color: #fff;
+    transition: 0.8s;
     &.open {
       flex-grow: 4;
     }
@@ -65,7 +66,7 @@
       text-align: center;
       outline: none;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.8s;
       font-size: larger;
 
       &:hover {
