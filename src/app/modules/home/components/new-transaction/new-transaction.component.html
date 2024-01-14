@@ -32,6 +32,13 @@
           placeholder="Amont of misses"
           [(ngModel)]="jineteo.misses">
 
+          <label for="selectorOpciones" class="label-input">Credit card you want to jinetear</label>
+          <div style="margin-top: 3px;"></div>
+
+          <select id="selectorOpciones" class="input" [(ngModel)]="jineteo.creditCardId" name="opcion">
+            <option *ngFor="let card of creditCardList" [value]="card.id">{{ card.name }}</option>
+          </select>
+
           <label for="observation"
           class="label-input">Observation</label>
           <div style="margin-top: 3px;"></div>
@@ -62,12 +69,45 @@
   <div [class.open]="activeAccordion === 'form2'" class="accordion-item">
     <button (click)="toggleAccordion('form2')" class="accordion-header">Capital Payment</button>
     <div class="accordion-content" *ngIf="activeAccordion === 'form2'">
-      <div class="grid-item">Puntos Colombia generados:
-        <h1>350000</h1>
+
+      <div class="acordion-form">
+        <form #paymentTransaction = "ngForm">
+          <label for="amount"
+          class="label-input">Amount</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="amount"
+          required="true"
+          placeholder="Amount of transaction"
+          [(ngModel)]="payment.amount">
+
+
+          <label for="observation"
+          class="label-input">Observation</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="text"
+          class="input"
+          name="observation"
+          required="false"
+          placeholder="Any observation about transaction"
+          [(ngModel)]="payment.observation">
+
+          <label for="date"
+          class="label-input">Date</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="date"
+          class="input"
+          name="date"
+          required="true"
+          placeholder="Date of transaction"
+          [(ngModel)]="payment.date">
+
+        </form>
       </div>
-      <form>
-        <!-- Campos del formulario 2 -->
-      </form>
     </div>
   </div>
 </div>

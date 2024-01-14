@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Jineteo } from '../../models/jineteo.model';
-
+import { Payment } from '../../models/payment.model';
+import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
+import { CreditCard } from '../../models/credit-card.model';
 @Component({
   selector: 'app-new-transaction',
   templateUrl: './new-transaction.component.html',
@@ -8,10 +10,13 @@ import { Jineteo } from '../../models/jineteo.model';
 })
 export class NewTransactionComponent {
   public jineteo: Jineteo;
+  public payment: Payment;
+  public creditCardList: CreditCard[] = [];
   public isSidebarActive = false;
   public activeAccordion: string | null = null;
+  public userId: string = localStorage.getItem('userId') || '' ;
 
-  constructor(){
+  constructor(private jinetepService: JineteoService ){
     this.jineteo = {
       'id': 0,
       'creditCardId': 0,
@@ -22,7 +27,32 @@ export class NewTransactionComponent {
       'typeOfJineteoId': 0,
       'observation': '',
       'date': new Date
+    },
+    this.payment = {
+      'id': 0,
+      'creditCardId': 0,
+      'userId': 0,
+      'amount': 0,
+      'observation': '',
+      'date': new Date
     }
+
+  }
+
+  ngOnInit(){
+    this.jinetepService.getCreditCardsById(this.userId).subscribe(
+      creditCardOptions => {
+        if (creditCardOptions.success){
+          console.log('Credit Cards:', creditCardOptions.data.creditCardDtoList);
+          this.creditCardList = creditCardOptions.data.creditCardDtoList;
+        } else {
+          console.error('It does not find success: ', creditCardOptions);
+        }
+      },
+      error => {
+        console.error('There was an error getting your credit cards: ', error);
+      }
+    )
   }
 
   toggleAccordion(formId: string) {

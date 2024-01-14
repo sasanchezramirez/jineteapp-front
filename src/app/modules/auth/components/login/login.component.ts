@@ -31,6 +31,7 @@ export class LoginComponent {
           if (response.success) {
             localStorage.setItem('email', response.data.email);
             localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('userId', response.data.id)
             this.router.navigate(['/home'])
           } else {
             this.isLoading = false;
