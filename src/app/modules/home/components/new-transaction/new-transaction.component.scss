@@ -1,51 +1,7 @@
-.navbar-vertical {
-  position: fixed;
-  left: 0;
-  width: 250px; // Ancho del sidebar
-  height: 100%;
-  background: #0e1018;
-  margin-top: -12px;
-  padding-top: 12px;
-  padding-left: 10px;
-  transition: transform 0.3s;
-  transform: translateX(-100%); // Inicia fuera de la pantalla
-  z-index: 1000; // Asegúrate de que esté sobre otros elementos
-
-  &.active {
-    transform: translateX(0); // Mueve el sidebar a la vista
-  }
-
-  .toggle-btn {
-    position: absolute;
-    right: -30px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    background-color: transparent;
-    border: 0;
-
-    &:focus {
-      outline: none;
-    }
-
-  }
-
-  .nav-item {
-    display: block;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    font-size: larger;
-
-    &:hover {
-      background: darken(#333, 10%);
-    }
-  }
-}
 
 .main-content {
   padding: 2rem;
-  transition: margin-left 0.3s;
+  transition: margin-left 0.8s;
   margin-left: 250px; // Tamaño del sidebar abierto
 
   &.active {
@@ -85,3 +41,106 @@
     }
   }
 }
+
+.accordion-container {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+
+  .accordion-item {
+    flex-grow: 1;
+    margin-right: 20px;
+    color: #fff;
+    transition: 0.8s;
+    &.open {
+      flex-grow: 4;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background-color: #575f6f;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.8s;
+      font-size: larger;
+
+      &:hover {
+        background-color: #464c5c;
+      }
+    }
+
+    .accordion-content {
+      width: 100%;
+      border-radius: 8px;
+      margin-top: 5%;
+      border-color: #fff;
+      background-color: #232a3a;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      color: #fff;
+
+      .acordion-form{
+        padding: 2%;
+        .input{
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #2f3b4c;
+          color: #fff;
+          box-sizing: border-box;
+          font-size: 13px;
+
+          &.invalid{
+            border: 2px solid #F44336;
+          }
+
+
+        }
+        .selector{
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #2f3b4c;
+          color: #fff;
+          box-sizing: border-box;
+          font-size: 13px;
+          appearance: none;
+
+          &:focus {
+            outline: none; // Remueve el outline al hacer focus
+            border-color: #464c5c;
+          }
+        }
+      }
+    }
+  }
+
+  .accordion-item:first-child {
+    margin-left: 0;
+  }
+  .accordion-item:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .accordion-container {
+    flex-direction: column;
+    width: 100%;
+
+    .accordion-item {
+      margin: 10px 0;
+      width: 100%;
+    }
+  }
+}
+
+

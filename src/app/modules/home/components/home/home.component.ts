@@ -8,11 +8,14 @@ import { ChartType, ChartData } from 'chart.js';
 })
 export class HomeComponent {
   isSidebarActive = false;
-  progressBarValue = 70; // Valor inicial del progreso
+  progressBarValue = 70;
 
-  toggleSidebar() {
-    this.isSidebarActive = !this.isSidebarActive;
+  // Valor inicial del progreso
+  handleSidebarToggle(isSidebarActive: boolean){
+    this.isSidebarActive = isSidebarActive;
   }
+
+
   pieChartData: ChartData<'pie'> = {
     datasets: [{
       data: [120, 150, 180, 90],

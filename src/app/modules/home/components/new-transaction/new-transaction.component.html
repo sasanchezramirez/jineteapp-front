@@ -1,20 +1,124 @@
-<aside class="navbar-vertical" [class.active]="isSidebarActive">
+<app-sidebar
+(sidebarToggle)="handleSidebarToggle($event)">
+</app-sidebar>
 
-  <button (click)="toggleSidebar()" class="toggle-btn">
-    <i>
-      <img src="../../../../../assets/icons/caret-right.svg" alt="">
-    </i>
-  </button>
+<div class="main-content" [class.active]="!isSidebarActive">
 
-  <nav>
-    <a href="#" class="nav-item">
-      <img src="../../../../../assets/icons/graph-up.svg" alt="">
-      Dashboard</a>
-    <a href="#" class="nav-item">
-      <img src="../../../../../assets/icons/clock-history.svg" alt="">
-      Historial</a>
-    <a href="#" class="nav-item">
-      <img src="../../../../../assets/icons/wallet.svg" alt="">
-      Nuevos Registros</a>
-  </nav>
-</aside>
+<div class="accordion-container">
+  <div [class.open]="activeAccordion === 'form1'" class="accordion-item">
+    <button (click)="toggleAccordion('form1')" class="accordion-header">Jineteo Transaction</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'form1'">
+      <div class="acordion-form">
+        <form #jinenteoTransaction = "ngForm">
+          <label for="amount"
+          class="label-input">Amount</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="amount"
+          required="true"
+          placeholder="Amount of transaction"
+          [(ngModel)]="jineteo.amount">
+
+          <label for="misses"
+          class="label-input">Any misses jineteando?</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="misses"
+          required="true"
+          placeholder="Amont of misses"
+          [(ngModel)]="jineteo.misses">
+
+          <label for="selectorCreditCard" class="label-input">Credit card you want to jinetear</label>
+          <div style="margin-top: 3px;"></div>
+
+          <select id="selectorCreditCard" class="selector" [(ngModel)]="jineteo.creditCardId" name="selectorCreditCard">
+            <option *ngFor="let card of creditCardList" [value]="card.id">{{ card.name }}</option>
+          </select>
+
+          <label for="selectorJineteoType" class="label-input">What kind of jineteo did you use?</label>
+          <div style="margin-top: 3px;"></div>
+
+          <select id="selectorJineteoType" class="selector" [(ngModel)]="jineteo.typeOfJineteoId" name="selectorJineteoType">
+            <option *ngFor="let jineteo of jineteoTypesList" [value]="jineteo.id">{{ jineteo.description }}</option>
+          </select>
+
+          <label for="observation"
+          class="label-input">Observation</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="text"
+          class="input"
+          name="observation"
+          required="false"
+          placeholder="Any observation about transaction"
+          [(ngModel)]="jineteo.observation">
+
+          <label for="date"
+          class="label-input">Date</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="date"
+          class="input"
+          name="date"
+          required="true"
+          placeholder="Date of transaction"
+          [(ngModel)]="jineteo.date">
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div [class.open]="activeAccordion === 'form2'" class="accordion-item">
+    <button (click)="toggleAccordion('form2')" class="accordion-header">Capital Payment</button>
+    <div class="accordion-content" *ngIf="activeAccordion === 'form2'">
+
+      <div class="acordion-form">
+        <form #paymentTransaction = "ngForm">
+          <label for="amount"
+          class="label-input">Amount</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="number"
+          class="input"
+          name="amount"
+          required="true"
+          placeholder="Amount of transaction"
+          [(ngModel)]="payment.amount">
+
+
+          <label for="observation"
+          class="label-input">Observation</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="text"
+          class="input"
+          name="observation"
+          required="false"
+          placeholder="Any observation about transaction"
+          [(ngModel)]="payment.observation">
+
+          <label for="date"
+          class="label-input">Date</label>
+          <div style="margin-top: 3px;"></div>
+
+          <input type="date"
+          class="input"
+          name="date"
+          required="true"
+          placeholder="Date of transaction"
+          [(ngModel)]="payment.date">
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
