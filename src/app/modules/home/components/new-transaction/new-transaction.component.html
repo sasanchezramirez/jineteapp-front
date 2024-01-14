@@ -32,11 +32,18 @@
           placeholder="Amont of misses"
           [(ngModel)]="jineteo.misses">
 
-          <label for="selectorOpciones" class="label-input">Credit card you want to jinetear</label>
+          <label for="selectorCreditCard" class="label-input">Credit card you want to jinetear</label>
           <div style="margin-top: 3px;"></div>
 
-          <select id="selectorOpciones" class="input" [(ngModel)]="jineteo.creditCardId" name="opcion">
+          <select id="selectorCreditCard" class="selector" [(ngModel)]="jineteo.creditCardId" name="selectorCreditCard">
             <option *ngFor="let card of creditCardList" [value]="card.id">{{ card.name }}</option>
+          </select>
+
+          <label for="selectorJineteoType" class="label-input">What kind of jineteo did you use?</label>
+          <div style="margin-top: 3px;"></div>
+
+          <select id="selectorJineteoType" class="selector" [(ngModel)]="jineteo.typeOfJineteoId" name="selectorJineteoType">
+            <option *ngFor="let jineteo of jineteoTypesList" [value]="jineteo.id">{{ jineteo.description }}</option>
           </select>
 
           <label for="observation"

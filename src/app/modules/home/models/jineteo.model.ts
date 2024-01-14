@@ -9,3 +9,15 @@ export interface Jineteo{
   observation?: string;
   date: Date;
 }
+
+export interface ResponseJineteoTypes{
+  success: boolean;
+  message: string;
+  data: {jineteo: TypeOfJineteo[]};
+  code: string;
+}
+
+export interface TypeOfJineteo{
+  id: number;
+  description: string;
+}

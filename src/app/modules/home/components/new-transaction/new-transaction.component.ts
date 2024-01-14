@@ -3,6 +3,7 @@ import { Jineteo } from '../../models/jineteo.model';
 import { Payment } from '../../models/payment.model';
 import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
 import { CreditCard } from '../../models/credit-card.model';
+import { TypeOfJineteo } from '../../models/jineteo.model';
 @Component({
   selector: 'app-new-transaction',
   templateUrl: './new-transaction.component.html',
@@ -12,6 +13,7 @@ export class NewTransactionComponent {
   public jineteo: Jineteo;
   public payment: Payment;
   public creditCardList: CreditCard[] = [];
+  public jineteoTypesList: TypeOfJineteo[] = [];
   public isSidebarActive = false;
   public activeAccordion: string | null = null;
   public userId: string = localStorage.getItem('userId') || '' ;
@@ -51,6 +53,19 @@ export class NewTransactionComponent {
       },
       error => {
         console.error('There was an error getting your credit cards: ', error);
+      },
+    )
+    this.jinetepService.getTypesOfJineteo().subscribe(
+      jineteoOptions => {
+        if (jineteoOptions.success){
+          console.log('Jineteo Types:', jineteoOptions.data.jineteo);
+          this.jineteoTypesList = jineteoOptions.data.jineteo;
+        } else {
+          console.error('It does not find success: ', jineteoOptions);
+        }
+      },
+      error => {
+        console.error('There was an error getting jineteo types: ', error);
       }
     )
   }

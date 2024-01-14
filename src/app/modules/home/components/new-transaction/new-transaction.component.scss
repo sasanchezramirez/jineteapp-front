@@ -99,9 +99,27 @@
           &.invalid{
             border: 2px solid #F44336;
           }
+
+
+        }
+        .selector{
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #2f3b4c;
+          color: #fff;
+          box-sizing: border-box;
+          font-size: 13px;
+          appearance: none;
+
+          &:focus {
+            outline: none; // Remueve el outline al hacer focus
+            border-color: #464c5c;
+          }
         }
       }
-
     }
   }
 
