@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Jineteo } from '../../models/jineteo.model';
-import { Payment } from '../../models/payment.model';
+import { Transaction } from '../../models/jineteo.model';
 import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
 import { CreditCard } from '../../models/credit-card.model';
 import { TypeOfJineteo } from '../../models/jineteo.model';
@@ -10,35 +9,36 @@ import { TypeOfJineteo } from '../../models/jineteo.model';
   styleUrl: './new-transaction.component.scss'
 })
 export class NewTransactionComponent {
-  public jineteo: Jineteo;
-  public payment: Payment;
+  public jineteo: Transaction;
+  public payment: Transaction;
   public creditCardList: CreditCard[] = [];
   public jineteoTypesList: TypeOfJineteo[] = [];
-  public isSidebarActive = false;
+  public isSidebarActive: boolean = false;
+  public isLoading: boolean = false;
+  public transactionCreatedSuccessfully: boolean = false;
   public activeAccordion: string | null = null;
   public userId: string = localStorage.getItem('userId') || '' ;
 
   constructor(private jinetepService: JineteoService ){
     this.jineteo = {
-      'id': 0,
       'creditCardId': 0,
-      'userId': 0,
+      'userId': Number(localStorage.getItem('userId')),
       'amount': 0,
       'misses': 0,
-      'typeOfTransactionId': 0,
+      'typeOfTransactionId': 1,
       'typeOfJineteoId': 0,
       'observation': '',
       'date': new Date
     },
     this.payment = {
-      'id': 0,
       'creditCardId': 0,
-      'userId': 0,
+      'userId': Number(localStorage.getItem('userId')),
       'amount': 0,
+      'misses': 0,
+      'typeOfTransactionId': 2,
       'observation': '',
       'date': new Date
     }
-
   }
 
   ngOnInit(){
@@ -76,6 +76,22 @@ export class NewTransactionComponent {
 
   handleSidebarToggle(isSidebarActive: boolean){
     this.isSidebarActive = isSidebarActive;
+  }
+
+  sendNewTransaction(){
+    this.jineteo.date.toString;
+    this.jinetepService.sendNewtransaction(this.jineteo).subscribe(
+      responseNewTransaction => {
+        if (responseNewTransaction.success){
+          this.transactionCreatedSuccessfully = true;
+        } else {
+          this.transactionCreatedSuccessfully = false;
+        }
+      },
+      error => {
+        console.error('There was an error sending the transaction: ', error);
+      }
+    )
   }
 
 }

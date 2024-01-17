@@ -68,6 +68,18 @@
           placeholder="Date of transaction"
           [(ngModel)]="jineteo.date">
 
+          <button
+          class="submit-button"
+          type="submit"
+          [hidden]="isLoading"
+          [disabled] = "jinenteoTransaction.invalid"
+          (submit)="jineteo"
+          [ngClass]="{
+            'invalid':jinenteoTransaction.invalid
+          }"
+          (click)="sendNewTransaction()">
+          Put a Jineteo!</button>
+
         </form>
       </div>
     </div>
