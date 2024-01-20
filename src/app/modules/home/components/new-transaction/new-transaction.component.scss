@@ -131,6 +131,24 @@
   }
 }
 
+.submit-button{
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #575f6f; /* Color de fondo del botón */
+  color: #ffffff; /* Color del texto del botón */
+  cursor: pointer;
+
+  &.invalid{
+    background-color: #464c5c;
+  }
+}
+.submit-button:hover {
+  background-color: #464c5c;
+}
+
 @media (max-width: 600px) {
   .accordion-container {
     flex-direction: column;

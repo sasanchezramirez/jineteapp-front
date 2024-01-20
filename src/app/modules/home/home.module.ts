@@ -8,6 +8,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { NewTransactionComponent } from './components/new-transaction/new-transaction.component';
 import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
     HomeRoutingModule,
     NgChartsModule,
     SidebarComponent,
-    FormsModule
+    FormsModule,
+    ModalComponent
   ]
 })
 export class HomeModule { }

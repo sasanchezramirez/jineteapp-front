@@ -2,7 +2,13 @@
 (sidebarToggle)="handleSidebarToggle($event)">
 </app-sidebar>
 
+<app-modal [message]="message" *ngIf="showModal" (closeEvent)="showModal = false"></app-modal>
+<button (click)="showModalFun()">Show Message</button>
+
+
 <div class="main-content" [class.active]="!isSidebarActive">
+
+
 
 <div class="accordion-container">
   <div [class.open]="activeAccordion === 'form1'" class="accordion-item">
@@ -68,6 +74,20 @@
           placeholder="Date of transaction"
           [(ngModel)]="jineteo.date">
 
+          <button
+          class="submit-button"
+          type="submit"
+          [hidden]="isLoading"
+          [disabled] = "jinenteoTransaction.invalid"
+          (submit)="jineteo"
+          [ngClass]="{
+            'invalid':jinenteoTransaction.invalid
+          }"
+          (click)="sendNewTransaction()">
+          Put a Jineteo!</button>
+
+
+
         </form>
       </div>
     </div>
@@ -118,7 +138,8 @@
     </div>
   </div>
 </div>
-
 </div>
+
+
 
 
