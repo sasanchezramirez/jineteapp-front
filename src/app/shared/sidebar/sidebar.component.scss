@@ -1,12 +1,14 @@
 .navbar-vertical {
+  justify-content: space-between;
+  flex-direction: column;
   position: fixed;
+  display: flex;
   left: 0;
   width: 250px; // Ancho del sidebar
   height: 100%;
   background: #0e1018;
   margin-top: -12px;
   padding-top: 12px;
-  padding-left: 10px;
   transition: transform 0.3s;
   transform: translateX(-100%); // Inicia fuera de la pantalla
   z-index: 1000; // Asegúrate de que esté sobre otros elementos
@@ -32,6 +34,19 @@
 
   .nav-item {
     display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+
+    &:hover {
+      background: darken(#333, 10%);
+    }
+  }
+  .sing-out{
+    margin-top: auto;
+    display: block;
+    margin-bottom: 10px;
     padding: 10px;
     color: white;
     text-decoration: none;
