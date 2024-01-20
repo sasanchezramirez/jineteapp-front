@@ -10,8 +10,9 @@ import { TypeOfJineteo } from '../../models/jineteo.model';
   styleUrl: './new-transaction.component.scss'
 })
 export class NewTransactionComponent {
-  public jineteo: Transaction;
-  public payment: Transaction;
+  public jineteo!: Transaction;
+  public payment!: Transaction;
+  public transaction!: Transaction;
   public creditCardList: CreditCard[] = [];
   public jineteoTypesList: TypeOfJineteo[] = [];
   public isSidebarActive: boolean = false;
@@ -24,6 +25,10 @@ export class NewTransactionComponent {
   public userId: string = localStorage.getItem('userId') || '' ;
 
   constructor(private jinetepService: JineteoService ){
+    this.initializeObjects();
+  }
+
+  initializeObjects(){
     this.jineteo = {
       'creditCardId': 0,
       'userId': Number(localStorage.getItem('userId')),
@@ -33,7 +38,8 @@ export class NewTransactionComponent {
       'typeOfJineteoId': 0,
       'observation': '',
       'date': new Date
-    },
+    };
+
     this.payment = {
       'creditCardId': 0,
       'userId': Number(localStorage.getItem('userId')),
@@ -42,7 +48,18 @@ export class NewTransactionComponent {
       'typeOfTransactionId': 2,
       'observation': '',
       'date': new Date
-    }
+    };
+
+    this.transaction = {
+      'creditCardId': 0,
+      'userId': 0,
+      'amount': 0,
+      'misses': 0,
+      'typeOfTransactionId': 0,
+      'typeOfJineteoId': 0,
+      'observation': '',
+      'date': new Date
+    };
   }
 
   ngOnInit(){
@@ -84,17 +101,27 @@ export class NewTransactionComponent {
 
 
   sendNewTransaction(){
-    this.jineteo.date.toString;
+    if(this.jineteo){
+      this.transaction = this.jineteo
+      console.log("It is a jineteo")
+    }
+    if (this.payment){
+      console.log("It is a payment")
+      this.transaction = this.payment
+    }
+    this.transaction.date.toString;
     this.isLoading = true;
-    this.jinetepService.sendNewtransaction(this.jineteo).subscribe(
+    this.jinetepService.sendNewtransaction(this.transaction).subscribe(
       responseNewTransaction => {
         if (responseNewTransaction.data){
+          this.initializeObjects();
           this.isLoading = false;
           this.transactionCreatedSuccessfully = true;
           this.message = 'Transaction created successfully';
           this.showModal = true;
           this.icon = 'assets/icons/bookmark-heart.svg'
         } else {
+          this.initializeObjects();
           this.isLoading = false;
           this.transactionCreatedSuccessfully = false;
           this.message = 'There was a problem trynt to create your transaction';
