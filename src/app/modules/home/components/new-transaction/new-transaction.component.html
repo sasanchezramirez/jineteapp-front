@@ -2,9 +2,10 @@
 (sidebarToggle)="handleSidebarToggle($event)">
 </app-sidebar>
 
-<app-modal [message]="message" *ngIf="showModal" (closeEvent)="showModal = false"></app-modal>
-<button (click)="showModalFun()">Show Message</button>
-
+<app-modal [message]="message"
+[img]="icon"
+*ngIf="showModal"
+(closeEvent)="showModal = false"></app-modal>
 
 <div class="main-content" [class.active]="!isSidebarActive">
 
@@ -73,6 +74,10 @@
           required="true"
           placeholder="Date of transaction"
           [(ngModel)]="jineteo.date">
+
+          <div class="loader-container">
+            <app-loader [isLoading]="isLoading"></app-loader>
+          </div>
 
           <button
           class="submit-button"

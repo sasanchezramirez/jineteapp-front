@@ -3,6 +3,7 @@ import { Transaction } from '../../models/jineteo.model';
 import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
 import { CreditCard } from '../../models/credit-card.model';
 import { TypeOfJineteo } from '../../models/jineteo.model';
+
 @Component({
   selector: 'app-new-transaction',
   templateUrl: './new-transaction.component.html',
@@ -17,6 +18,7 @@ export class NewTransactionComponent {
   public isLoading: boolean = false;
   public showModal: boolean = false;
   public message: string = '';
+  public icon: string = '';
   public transactionCreatedSuccessfully: boolean = false;
   public activeAccordion: string | null = null;
   public userId: string = localStorage.getItem('userId') || '' ;
@@ -80,19 +82,24 @@ export class NewTransactionComponent {
     this.isSidebarActive = isSidebarActive;
   }
 
-  showModalFun() {
-    this.message = 'Your custom message';
-    this.showModal = true;
-  }
 
   sendNewTransaction(){
     this.jineteo.date.toString;
+    this.isLoading = true;
     this.jinetepService.sendNewtransaction(this.jineteo).subscribe(
       responseNewTransaction => {
         if (responseNewTransaction.data){
+          this.isLoading = false;
           this.transactionCreatedSuccessfully = true;
+          this.message = 'Transaction created successfully';
+          this.showModal = true;
+          this.icon = 'assets/icons/bookmark-heart.svg'
         } else {
+          this.isLoading = false;
           this.transactionCreatedSuccessfully = false;
+          this.message = 'There was a problem trynt to create your transaction';
+          this.showModal = true;
+          this.icon = 'assets/icons/emoji-smile-upside-down.svg'
         }
       },
       error => {
