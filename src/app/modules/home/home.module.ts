@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NewTransactionComponent } from './components/new-transaction/new-transaction.component';
 import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
     NgChartsModule,
     SidebarComponent,
     FormsModule,
-    ModalComponent
+    ModalComponent,
+    LoaderComponent
   ]
 })
 export class HomeModule { }

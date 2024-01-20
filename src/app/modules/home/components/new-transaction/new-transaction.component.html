@@ -2,9 +2,10 @@
 (sidebarToggle)="handleSidebarToggle($event)">
 </app-sidebar>
 
-<app-modal [message]="message" *ngIf="showModal" (closeEvent)="showModal = false"></app-modal>
-<button (click)="showModalFun()">Show Message</button>
-
+<app-modal [message]="message"
+[img]="icon"
+*ngIf="showModal"
+(closeEvent)="showModal = false"></app-modal>
 
 <div class="main-content" [class.active]="!isSidebarActive">
 
@@ -74,6 +75,10 @@
           placeholder="Date of transaction"
           [(ngModel)]="jineteo.date">
 
+          <div class="loader-container">
+            <app-loader [isLoading]="isLoading"></app-loader>
+          </div>
+
           <button
           class="submit-button"
           type="submit"
@@ -110,6 +115,13 @@
           placeholder="Amount of transaction"
           [(ngModel)]="payment.amount">
 
+          <label for="selectorCreditCard" class="label-input">Credit card you want to pay</label>
+          <div style="margin-top: 3px;"></div>
+
+          <select id="selectorCreditCard" class="selector" [(ngModel)]="payment.creditCardId" name="selectorCreditCard">
+            <option *ngFor="let card of creditCardList" [value]="card.id">{{ card.name }}</option>
+          </select>
+
 
           <label for="observation"
           class="label-input">Observation</label>
@@ -132,6 +144,18 @@
           required="true"
           placeholder="Date of transaction"
           [(ngModel)]="payment.date">
+
+          <button
+          class="submit-button"
+          type="submit"
+          [hidden]="isLoading"
+          [disabled] = "paymentTransaction.invalid"
+          (submit)="payment"
+          [ngClass]="{
+            'invalid':paymentTransaction.invalid
+          }"
+          (click)="sendNewTransaction()">
+          Put a payment!</button>
 
         </form>
       </div>

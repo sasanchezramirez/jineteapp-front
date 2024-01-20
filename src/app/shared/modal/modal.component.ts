@@ -9,9 +9,10 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalComponent {
   @Input() message: string = '';
+  @Input() img: string= '';
   @Output() closeEvent = new EventEmitter<void>();
 
-  showModal: boolean = false;
+  showModal: boolean = true;
 
   openModal() {
     this.showModal = true;
