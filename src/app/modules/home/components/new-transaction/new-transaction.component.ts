@@ -15,6 +15,8 @@ export class NewTransactionComponent {
   public jineteoTypesList: TypeOfJineteo[] = [];
   public isSidebarActive: boolean = false;
   public isLoading: boolean = false;
+  public showModal: boolean = false;
+  public message: string = '';
   public transactionCreatedSuccessfully: boolean = false;
   public activeAccordion: string | null = null;
   public userId: string = localStorage.getItem('userId') || '' ;
@@ -78,11 +80,16 @@ export class NewTransactionComponent {
     this.isSidebarActive = isSidebarActive;
   }
 
+  showModalFun() {
+    this.message = 'Your custom message';
+    this.showModal = true;
+  }
+
   sendNewTransaction(){
     this.jineteo.date.toString;
     this.jinetepService.sendNewtransaction(this.jineteo).subscribe(
       responseNewTransaction => {
-        if (responseNewTransaction.success){
+        if (responseNewTransaction.data){
           this.transactionCreatedSuccessfully = true;
         } else {
           this.transactionCreatedSuccessfully = false;

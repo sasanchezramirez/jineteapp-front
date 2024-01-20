@@ -2,7 +2,13 @@
 (sidebarToggle)="handleSidebarToggle($event)">
 </app-sidebar>
 
+<app-modal [message]="message" *ngIf="showModal" (closeEvent)="showModal = false"></app-modal>
+<button (click)="showModalFun()">Show Message</button>
+
+
 <div class="main-content" [class.active]="!isSidebarActive">
+
+
 
 <div class="accordion-container">
   <div [class.open]="activeAccordion === 'form1'" class="accordion-item">
@@ -80,6 +86,8 @@
           (click)="sendNewTransaction()">
           Put a Jineteo!</button>
 
+
+
         </form>
       </div>
     </div>
@@ -130,7 +138,8 @@
     </div>
   </div>
 </div>
-
 </div>
+
+
 
 
