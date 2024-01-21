@@ -9,10 +9,16 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class SidebarComponent {
   @Output() sidebarToggle = new EventEmitter<boolean>();
+  @Output() signOut = new EventEmitter<void>();
+
   isSidebarActive = false;
 
   toggleSidebar() {
     this.isSidebarActive = !this.isSidebarActive;
     this.sidebarToggle.emit(this.isSidebarActive);
+  }
+  onSignOut() {
+    localStorage.removeItem('accessToken');
+    this.signOut.emit();
   }
 }

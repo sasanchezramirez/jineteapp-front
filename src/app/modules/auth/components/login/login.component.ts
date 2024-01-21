@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public login: Login;
-  validEmail: boolean = true;
-  validPwd: boolean = true;
-  isLoading: boolean = false;
-  userFound: boolean = true;
-  correctPwd: boolean = true;
+  public validEmail: boolean = true;
+  public validPwd: boolean = true;
+  public isLoading: boolean = false;
+  public userFound: boolean = true;
+  public correctPwd: boolean = true;
+  public message: string = '';
+  public icon: string = '';
+  public showModal: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.login = {
@@ -36,12 +39,16 @@ export class LoginComponent {
           } else {
             this.isLoading = false;
             if (response && response.code === "001") {
+              this.message = response.message;
+              this.showModal = true;
+              this.icon = 'assets/icons/emoji-smile-upside-down.svg'
               this.userFound = false;
-              console.log(response.message);
             }
             if (response && response.code === "002") {
               this.correctPwd = false;
-              console.log(response.message);
+              this.message = response.message;
+              this.showModal = true;
+              this.icon = 'assets/icons/emoji-smile-upside-down.svg'
             }
           }
         }

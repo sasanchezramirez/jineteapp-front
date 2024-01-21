@@ -62,9 +62,20 @@
     }"
     (click)="onLogin()">
     Go!</button>
+    <a class="register-link"
+    href="auth/register">do you want to register?</a>
+
   </form>
 
 </body>
+
+<app-modal
+[message]="message"
+[img]="icon"
+*ngIf="showModal"
+(closeEvent)="showModal = false">
+
+</app-modal>
 
 
 
