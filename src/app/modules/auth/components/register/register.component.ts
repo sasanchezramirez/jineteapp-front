@@ -37,6 +37,9 @@ export class RegisterComponent {
       this.sendigRegister = true;
       this.authService.register(this.user).subscribe({
         next: response => {
+          localStorage.setItem('email', response.data.email);
+          localStorage.setItem('accessToken', response.data.accessToken);
+          localStorage.setItem('userId', response.data.userId);
           this.router.navigate(['/home'])
           console.log('Registro exitoso', response);
         },
