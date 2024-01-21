@@ -17,6 +17,9 @@ export class RegisterComponent {
   public validPwd: boolean = true;
   public matchPwd: boolean = true;
   public sendigRegister: boolean = false;
+  public message: string = '';
+  public icon: string = '';
+  public showModal: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user = {
@@ -44,11 +47,15 @@ export class RegisterComponent {
           console.log('Registro exitoso', response);
         },
         error: error => {
-          console.error('Error en el registro', error);
+          this.message = 'Uppss, there was a problem with your register'
+          this.showModal = true;
+          this.icon = 'assets/icons/emoji-smile-upside-down.svg'
         }
     });
     } else {
-      console.log('Validación fallida');
+      this.message = 'Uppss, there was a problem with your register'
+      this.showModal = true;
+      this.icon = 'assets/icons/emoji-smile-upside-down.svg'
     }
   }
 

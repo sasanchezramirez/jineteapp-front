@@ -69,5 +69,13 @@
 
 </body>
 
+<app-modal
+[message]="message"
+[img]="icon"
+*ngIf="showModal"
+(closeEvent)="showModal = false">
+
+</app-modal>
+
 
 
