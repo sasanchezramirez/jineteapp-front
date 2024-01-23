@@ -1,0 +1,79 @@
+<app-sidebar
+(sidebarToggle)="handleSidebarToggle($event)">
+</app-sidebar>
+
+<div class="main-content" [class.active]="!isSidebarActive">
+<div class="grid-container">
+  <form class="credit-card-box"
+  #creditCardForm = "ngForm">
+
+    <label for="cardName"
+    class="label-input"> Credit card name</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="text"
+    class="input"
+    name="cardName"
+    placeholder="The way you can recognize your card"
+    required = "true"
+    [(ngModel)]="creditCard.name">
+
+    <label for="availability"
+    class="label-input"> Credit card availability</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="number"
+    class="input"
+    name="availability"
+    required = "true"
+    [(ngModel)]="creditCard.availability">
+
+    <label for="balance"
+    class="label-input"> Credit card balance</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="number"
+    class="input"
+    name="balance"
+    required = "true"
+    [(ngModel)]="creditCard.balance">
+
+
+    <label for="datelineToPay"
+    class="label-input"> Day you have to pay</label>
+    <div style="margin-top: 3px;"></div>
+
+    <input type="number"
+    class="input"
+    name="datelineToPay"
+    required = "true"
+    [(ngModel)]="creditCard.datelineToPay">
+
+    <div class="loader-container">
+      <app-loader [isLoading]="isLoading"></app-loader>
+    </div>
+    <button
+    class="submit-button"
+    type="submit"
+    [hidden]="isLoading"
+    [disabled] = "creditCardForm.invalid"
+    (submit)="creditCard"
+    [ngClass]="{
+      'invalid':creditCardForm.invalid
+    }"
+    (click)="onSubmit()">
+    Go!</button>
+
+  </form>
+
+</div>
+</div>
+
+
+<app-modal
+[message]="message"
+[img]="icon"
+*ngIf="showModal"
+(closeEvent)="showModal = false">
+
+</app-modal>

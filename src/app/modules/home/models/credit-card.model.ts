@@ -5,8 +5,15 @@ export interface ResponseCreditCard{
   code: string;
 }
 
+export interface ResponseNewCreditCard{
+  success: boolean;
+  message: string;
+  data: boolean;
+  code: string;
+}
+
 export interface CreditCard{
-  id: number;
+  id?: number;
   userId?: number;
   name: string;
   availability: number;
