@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { enviroment } from 'src/enviroments/enviroments.prod';
 import { CreditCard, ResponseCreditCard, ResponseNewCreditCard } from 'src/app/modules/home/models/credit-card.model';
 import { Transaction, ResponseJineteoTypes, ResponseSendTransaction } from 'src/app/modules/home/models/jineteo.model';
+import { TransactionResponse } from 'src/app/modules/home/models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,12 @@ export class JineteoService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<ResponseSendTransaction>(`${enviroment.apiUrl}/new-transaction`,transaction);
 
+  }
+
+  getTransactionsById(id: string):Observable<TransactionResponse>{
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<TransactionResponse>(`${enviroment.apiUrl}/transaction-by-user/${id}`,{ headers: headers });
   }
 
 }

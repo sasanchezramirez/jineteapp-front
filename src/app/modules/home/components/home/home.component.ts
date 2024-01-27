@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartData } from 'chart.js';
+import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,22 @@ import { ChartType, ChartData } from 'chart.js';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  isSidebarActive = false;
-  progressBarValue = 70;
+  public isSidebarActive = false;
+  public rogressBarValue = 70;
+  public userId: string = localStorage.getItem('userId') || '';
 
-  // Valor inicial del progreso
+  constructor(private jinetepService: JineteoService ){
+  }
+
+  ngOnInit(){
+  }
+
+
+  getTransactions(){
+    this.jinetepService.getTransactionsById(this.userId)
+
+  }
+
   handleSidebarToggle(isSidebarActive: boolean){
     this.isSidebarActive = isSidebarActive;
   }
@@ -35,7 +48,6 @@ export class HomeComponent {
   };
   pieChartType: ChartType = 'pie';
 
-  constructor() { }
 }
 
 
