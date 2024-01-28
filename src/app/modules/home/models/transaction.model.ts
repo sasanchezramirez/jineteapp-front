@@ -12,6 +12,7 @@ export interface TransactionData {
   typeOfJineteoId: number | null;
   typeOfTransactionId: number;
   amount: number;
+  losses: number;
   date: string;
   observation: string;
 }
