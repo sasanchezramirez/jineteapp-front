@@ -1,7 +1,7 @@
-export interface TransactionResponse {
+export interface ResponseTransactionList {
   success: boolean;
   message: string;
-  data: TransactionData;
+  data: {transactionDtoList: TransactionData[]};
   code: string;
 }
 

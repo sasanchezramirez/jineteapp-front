@@ -15,6 +15,7 @@ export class NewTransactionComponent {
   public transaction!: Transaction;
   public creditCardList: CreditCard[] = [];
   public jineteoTypesList: TypeOfJineteo[] = [];
+  public isJineteo: boolean = false;
   public isSidebarActive: boolean = false;
   public isLoading: boolean = false;
   public showModal: boolean = false;
@@ -100,12 +101,12 @@ export class NewTransactionComponent {
   }
 
 
-  sendNewTransaction(){
-    if(this.jineteo){
+  sendNewTransaction(transaction: Transaction ){
+    if(transaction.typeOfTransactionId == 1){
       this.transaction = this.jineteo
       console.log("It is a jineteo")
     }
-    if (this.payment){
+    if (transaction.typeOfTransactionId == 2){
       console.log("It is a payment")
       this.transaction = this.payment
     }

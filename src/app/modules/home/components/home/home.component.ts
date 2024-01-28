@@ -9,18 +9,25 @@ import { JineteoService } from 'src/app/services/jineteo/jineteo.service';
 })
 export class HomeComponent {
   public isSidebarActive = false;
-  public rogressBarValue = 70;
+  public progressBarValue = 70;
   public userId: string = localStorage.getItem('userId') || '';
 
   constructor(private jinetepService: JineteoService ){
   }
 
   ngOnInit(){
+    this.getTransactions();
   }
 
 
   getTransactions(){
-    this.jinetepService.getTransactionsById(this.userId)
+    this.jinetepService.getTransactionsById(this.userId).subscribe({
+      next: response => {
+        if(response.success){
+          localStorage.setItem('TransactionsList', JSON.stringify(response.data))
+        }
+      }
+    })
 
   }
 
