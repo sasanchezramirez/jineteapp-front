@@ -10,12 +10,14 @@ import { NewTransactionComponent } from './components/new-transaction/new-transa
 import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
+import { NewCreditCardComponent } from './components/new-credit-card/new-credit-card.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    NewTransactionComponent
-  ],
+    NewTransactionComponent,
+    NewCreditCardComponent
+    ],
   imports: [
     CommonModule,
     HomeRoutingModule,

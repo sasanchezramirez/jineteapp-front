@@ -15,6 +15,7 @@ export class NewTransactionComponent {
   public transaction!: Transaction;
   public creditCardList: CreditCard[] = [];
   public jineteoTypesList: TypeOfJineteo[] = [];
+  public isJineteo: boolean = false;
   public isSidebarActive: boolean = false;
   public isLoading: boolean = false;
   public showModal: boolean = false;
@@ -33,7 +34,7 @@ export class NewTransactionComponent {
       'creditCardId': 0,
       'userId': Number(localStorage.getItem('userId')),
       'amount': 0,
-      'misses': 0,
+      'losses': 0,
       'typeOfTransactionId': 1,
       'typeOfJineteoId': 0,
       'observation': '',
@@ -44,7 +45,7 @@ export class NewTransactionComponent {
       'creditCardId': 0,
       'userId': Number(localStorage.getItem('userId')),
       'amount': 0,
-      'misses': 0,
+      'losses': 0,
       'typeOfTransactionId': 2,
       'observation': '',
       'date': new Date
@@ -54,7 +55,7 @@ export class NewTransactionComponent {
       'creditCardId': 0,
       'userId': 0,
       'amount': 0,
-      'misses': 0,
+      'losses': 0,
       'typeOfTransactionId': 0,
       'typeOfJineteoId': 0,
       'observation': '',
@@ -100,12 +101,12 @@ export class NewTransactionComponent {
   }
 
 
-  sendNewTransaction(){
-    if(this.jineteo){
+  sendNewTransaction(transaction: Transaction ){
+    if(transaction.typeOfTransactionId == 1){
       this.transaction = this.jineteo
       console.log("It is a jineteo")
     }
-    if (this.payment){
+    if (transaction.typeOfTransactionId == 2){
       console.log("It is a payment")
       this.transaction = this.payment
     }

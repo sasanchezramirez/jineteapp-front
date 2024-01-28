@@ -4,10 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 import { NewTransactionComponent } from './components/new-transaction/new-transaction.component';
 import { LoginComponent } from '../auth/components/login/login.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { NewCreditCardComponent } from './components/new-credit-card/new-credit-card.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'new-transaction', component: NewTransactionComponent, canActivate: [AuthGuard]},
+  {path: 'new-credit-card', component: NewCreditCardComponent, canActivate: [AuthGuard]},
   {path: '', component: LoginComponent}
 ];
 

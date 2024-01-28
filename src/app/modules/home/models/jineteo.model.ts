@@ -3,7 +3,7 @@ export interface Transaction{
   creditCardId: number;
   userId: number;
   amount: number;
-  misses?: number;
+  losses?: number;
   typeOfTransactionId: number;
   typeOfJineteoId?: number;
   observation?: string;
