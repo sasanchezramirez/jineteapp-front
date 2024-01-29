@@ -11,11 +11,21 @@
       <span>{{ progressBarValue }}%</span>
     </div>
 
-    <div class="grid-item">Puntos Colombia generated:
-      <h1>350000</h1>
+    <div class="grid-item">Puntos Colombia:
+      <h1>{{ puntosColombia | number:'1.0-0' }}</h1>
     </div>
 
-    <div class="grid-item">Contenido 3</div>
+    <div class="grid-item">
+      <h3>Calendario de Pagos - {{ currentMonth | date: 'MMMM y' }}</h3>
+      <div class="calendar">
+        <div class="day" *ngFor="let day of weekDays">{{ day }}</div>
+        <div class="day" *ngFor="let day of daysInMonth" [ngStyle]="{'background-color': day.backgroundColor}">
+          {{ day.date | date: 'dd' }}
+      </div>
+
+
+      </div>
+    </div>
 
     <div class="grid-item">
       <canvas baseChart [data]="pieChartData" [type]="pieChartType">
