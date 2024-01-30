@@ -91,7 +91,8 @@ export class HomeComponent {
 
   updatePuntosColombia(){
     const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
-    const totalAmount = transactionsList.reduce((acc: number, transaction: { amount: number }) => acc + transaction.amount, 0);
+    const filteredTransactions = transactionsList.filter((transaction: { typeOfTransactionId: number }) => transaction.typeOfTransactionId === 1);
+    const totalAmount = filteredTransactions.reduce((acc: number, transaction: { amount: number }) => acc + transaction.amount, 0);
 
     this.puntosColombia = (totalAmount / 3300) * 6;
   }

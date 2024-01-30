@@ -46,6 +46,7 @@
 .calendar {
   max-width: 100%; /* Asegura que el calendario no exceda el ancho del grid-item */
   display: grid;
+  margin-left: 3%;
   grid-template-columns: repeat(7, 1fr);
 }
 
