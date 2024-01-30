@@ -15,6 +15,7 @@ export class HomeComponent {
   public creditCardId: number = 0;
   public userId: string = localStorage.getItem('userId') || '';
   public puntosColombia: number = 0;
+  public totalLosses: number = 0;
   public daysInMonth: any[] = [];
   public transactionDays: Set<number> = new Set();
   public currentMonth = new Date();
@@ -40,7 +41,7 @@ export class HomeComponent {
   ngOnInit(){
     this.getTransactions();
     this.updatePuntosColombia();
-
+    this.updateLosses();
   }
 
   getTransactions(){
@@ -83,7 +84,7 @@ export class HomeComponent {
     const creditCardData = JSON.parse(localStorage.getItem(`CreditCard_${this.creditCardId}`) || '{}');
     console.log(this.creditCardId);
     if (creditCardData && creditCardData.balance > 0) {
-      this.progressBarValue = Math.min((totalTransactions / creditCardData.balance) * 100, 100);
+      this.progressBarValue = Math.round((totalTransactions / creditCardData.balance) * 100 * 100) / 100;
     } else {
       this.progressBarValue = 0;
     }
@@ -95,6 +96,14 @@ export class HomeComponent {
     const totalAmount = filteredTransactions.reduce((acc: number, transaction: { amount: number }) => acc + transaction.amount, 0);
 
     this.puntosColombia = (totalAmount / 3300) * 6;
+  }
+
+  updateLosses(){
+    const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
+    const filteredTransactions = transactionsList.filter((transaction: { typeOfTransactionId: number }) => transaction.typeOfTransactionId === 1);
+    const totalAmount = filteredTransactions.reduce((acc: number, transaction: { losses: number }) => acc + transaction.losses, 0);
+
+    this.totalLosses = totalAmount;
   }
 
   generateCalendarDays(date: Date) {
