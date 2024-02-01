@@ -43,6 +43,29 @@
   }
 }
 
+.calendar {
+  max-width: 100%; /* Asegura que el calendario no exceda el ancho del grid-item */
+  display: grid;
+  margin-left: 3%;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px;
+  border-color: #fff;
+  border-style: groove;
+}
+
+.transaction-day {
+  background-color: #ffcc00; /* Color de fondo para los días de transacción */
+  color: #ffffff; /* Color del texto para los días de transacción */
+  font-weight: bold;
+}
+
+
 .main-content {
   padding: 2rem;
   transition: margin-left 0.5s;
