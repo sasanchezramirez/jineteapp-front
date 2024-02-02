@@ -1,0 +1,41 @@
+$primary-hue: 210; // base hue for a cool, neutral blue
+$accent-hue: 345; // hue for a warm accent color
+
+@function color($hue, $saturation, $lightness) {
+  @return hsl($hue, $saturation, $lightness);
+}
+
+// Define base monochromatic colors
+$colors: (
+  primary-dark: color($primary-hue, 25%, 15%), // very dark blue for text and active elements
+  primary: color($primary-hue, 20%, 30%), // dark blue for primary actions and headings
+  primary-light: color($primary-hue, 15%, 45%), // lighter blue for secondary information
+  secondary: color($primary-hue, 15%, 90%), // very light blue for backgrounds
+  tertiary: color($primary-hue, 10%, 80%), // light grey-blue for card backgrounds and inactive elements
+
+  // Define accent colors
+  accent-primary: color($accent-hue, 70%, 50%), // a vibrant pink for interactive elements
+  accent-secondary: color($accent-hue, 30%, 70%), // a soft pink for highlights and hover states
+
+  // Neutral colors
+  text-primary: color($primary-hue, 20%, 10%), // almost black for high readability text
+  text-secondary: color($primary-hue, 10%, 60%), // grey for less prominent text
+  border: color($primary-hue, 20%, 75%), // light grey for borders and dividers
+  background: color($primary-hue, 0%, 100%), // white for main content background
+);
+
+// Mixins for shadows, hovers, and borderlines
+@mixin box-shadow($color, $opacity, $x: 0px, $y: 2px, $blur: 4px) {
+  box-shadow: $x $y $blur rgba($color, $opacity);
+}
+
+@mixin hover-state($color) {
+  &:hover {
+    background-color: $color;
+    @include box-shadow($color, 0.2);
+  }
+}
+
+@mixin border-line($color, $width: 1px) {
+  border: $width solid $color;
+}

@@ -11,6 +11,7 @@ import { SidebarComponent } from 'src/app/shared/sidebar/sidebar.component';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { LoaderComponent } from 'src/app/shared/loader/loader.component';
 import { NewCreditCardComponent } from './components/new-credit-card/new-credit-card.component';
+import { MainContentComponent } from 'src/app/shared/main-content/main-content.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NewCreditCardComponent } from './components/new-credit-card/new-credit-
     SidebarComponent,
     FormsModule,
     ModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    MainContentComponent
   ]
 })
 export class HomeModule { }
