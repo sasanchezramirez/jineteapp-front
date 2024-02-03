@@ -4,6 +4,23 @@
 
 <div class="main-content" [class.active]="!isSidebarActive">
   <div class="grid-container">
+    <app-general-information></app-general-information>
+    <app-progress-card
+    [progressBarValue]="progressBarValue"
+    [creditCardName]="creditCard.name"
+    ></app-progress-card>
+        <app-progress-card
+    [progressBarValue]="progressBarValue"
+    [creditCardName]="creditCard.name"
+    ></app-progress-card>
+    <app-overview-card
+    [puntosColombia]="puntosColombia"
+    [totalLosses]="totalLosses"
+    ></app-overview-card>
+  </div>
+</div>
+<!--<div class="main-content" [class.active]="!isSidebarActive">
+  <div class="grid-container">
 
     <div class="grid-item">
       <label for="progressBar">Progress with {{creditCard.name}}</label>
@@ -31,5 +48,5 @@
     <div class="grid-item full-width">
     </div>
   </div>
-</div>
+</div> -->
 

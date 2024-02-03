@@ -1,43 +1,19 @@
-@import '../../../styles/variables.scss';
+@import '/src/styles/variables.scss';
 
 .main-content {
   padding: 2rem;
   transition: margin-left 0.5s;
-  margin-left: 250px; // Tamaño del sidebar abierto
+  margin-left: 250px;
 
   &.active {
-    margin-left: 0; // Tamaño del sidebar cerrado
+    margin-left: 0;
   }
 
   .grid-container {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: center; // Espacio entre los elementos de la cuadrícula
-
-    .grid-item {
-      flex: 1 1 45%;
-      min-width: 300px;
-      border-radius: 8px;
-      padding: 1rem;
-      height: 150px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: map-get($colors, text-primary);
-      font-size: larger;
-      background: map-get($map: $colors, $key: tertiary);
-
-      &:not(:last-child) {
-        margin-bottom: 2rem; // Agrega espacio debajo si no es el último elemento
-      }
-
-      // Clase para que el gráfico de tarta tome el ancho completo en una fila
-      &.full-width {
-        flex-basis: 100%;
-      }
-    }
+    justify-content: center;
   }
 
   progress {

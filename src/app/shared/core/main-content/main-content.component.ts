@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-main-content',
@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './main-content.component.scss'
 })
 export class MainContentComponent {
-  public isSidebarActive: boolean = false;
+  @Input() public isSidebarActive: boolean = false;
 
 }

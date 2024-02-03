@@ -15,9 +15,10 @@ $colors: (
 
   // Define accent colors
   accent-primary: color($accent-hue, 70%, 50%), // a vibrant pink for interactive elements
-  accent-secondary: color($accent-hue, 30%, 70%), // a soft pink for highlights and hover states
+  accent-secondary: #4D4E8A, // a soft blue for highlights and hover states
 
   // Neutral colors
+  text-white: #fff,
   text-primary: color($primary-hue, 20%, 10%), // almost black for high readability text
   text-secondary: color($primary-hue, 10%, 60%), // grey for less prominent text
   border: color($primary-hue, 20%, 75%), // light grey for borders and dividers

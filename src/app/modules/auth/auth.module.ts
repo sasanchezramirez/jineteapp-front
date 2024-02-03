@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { LoaderComponent } from 'src/app/shared/loader/loader.component';
-import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { LoaderComponent } from 'src/app/shared/utils/loader/loader.component';
+import { ModalComponent } from 'src/app/shared/utils/modal/modal.component';
 
 
 @NgModule({
