@@ -1,1 +1,9 @@
-<p>calendar-card works!</p>
+<div class="grid-item">
+  <h1>Calendary - {{ currentMonth | date: 'MMMM y' }}</h1>
+  <div class="calendar">
+    <div class="day" *ngFor="let day of weekDays">{{ day }}</div>
+      <div class="day" *ngFor="let day of daysInMonth" [ngStyle]="{'background-color': day.backgroundColor}">
+        {{ day.date | date: 'dd' }}
+      </div>
+  </div>
+</div>

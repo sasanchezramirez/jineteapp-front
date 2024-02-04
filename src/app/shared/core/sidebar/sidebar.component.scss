@@ -1,6 +1,8 @@
 @import '/src/styles/variables.scss';
 
 .navbar-vertical {
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   justify-content: space-between;
   flex-direction: column;
   position: fixed;

@@ -1,8 +1,7 @@
 @import '/src/styles/variables.scss';
 
-
-.icon-pco{
-  color: aqua;
+.icon{
+  margin-right: 10%;
 }
 
 .grid-item {
@@ -16,13 +15,14 @@
 
   color: map-get($colors, text-primary);
   font-size: larger;
-  margin-bottom: 2rem;
+  margin: 2rem auto;
 
 
   &.h1{
     align-items: center;
     justify-content: center;
   }
+
   .item-overview{
     display: flex;
     flex-direction: row;
