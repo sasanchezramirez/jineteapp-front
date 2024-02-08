@@ -20,7 +20,11 @@
           <label for="amount"
           class="label-input">Amount</label>
           <div style="margin-top: 3px;"></div>
-
+          <div class="amount-suggestions">
+            <span class="badge" (click)="fillAmount(2000000)">2,000,000</span>
+            <span class="badge" (click)="fillAmount(1700000)">1,700,000</span>
+            <span class="badge" (click)="fillAmount(1000000)">1,000,000</span>
+          </div>
           <input type="number"
           class="input"
           name="amount"
@@ -29,9 +33,13 @@
           [(ngModel)]="jineteo.amount">
 
           <label for="misses"
-          class="label-input">Any misses jineteando?</label>
+          class="label-input">Any losses jineteando?</label>
           <div style="margin-top: 3px;"></div>
-
+          <div class="amount-suggestions">
+            <span class="badge" (click)="fillLosses(30000)">30,000</span>
+            <span class="badge" (click)="fillLosses(60000)">60,000</span>
+            <span class="badge" (click)="fillLosses(90000)">90,000</span>
+          </div>
           <input type="number"
           class="input"
           name="misses"
