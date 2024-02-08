@@ -1,0 +1,53 @@
+@import '/src/styles/variables.scss';
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+
+    .logo-text {
+      font-size: x-large;
+    }
+
+    .badge {
+      background-color: map-get($map: $colors, $key: accent-primary);
+      color: #fff;
+      border-radius: 12px;
+      padding: 2px 8px;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+  }
+
+
+  .actions-container {
+    button {
+      background: none;
+      border: none;
+      margin-left: 10px;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .upgrade-btn {
+      background-color: map-get($map: $colors, $key: accent-primary);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: darken(#28a745, 5%);
+      }
+    }
+  }
+}

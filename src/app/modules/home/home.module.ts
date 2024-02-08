@@ -16,6 +16,7 @@ import { GeneralInformationComponent } from 'src/app/shared/boards/general-infor
 import { ProgressCardComponent } from 'src/app/shared/boards/progress-card/progress-card.component';
 import { CalendarCardComponent } from 'src/app/shared/boards/calendar-card/calendar-card.component';
 import { OverviewCardComponent } from 'src/app/shared/boards/overview-card/overview-card.component';
+import { HeaderComponent } from 'src/app/shared/core/header/header.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OverviewCardComponent } from 'src/app/shared/boards/overview-card/overv
     GeneralInformationComponent,
     ProgressCardComponent,
     CalendarCardComponent,
-    OverviewCardComponent
+    OverviewCardComponent,
+    HeaderComponent
   ]
 })
 export class HomeModule { }

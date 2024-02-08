@@ -1,8 +1,10 @@
-
 <app-sidebar
 (sidebarToggle)="handleSidebarToggle($event)">
 </app-sidebar>
+
 <div class="main-content" [class.active]="!isSidebarActive">
+  <app-header></app-header>
+
   <div class="grid-container">
     <app-general-information></app-general-information>
     <app-progress-card
