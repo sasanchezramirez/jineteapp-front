@@ -17,12 +17,14 @@ import { ProgressCardComponent } from 'src/app/shared/boards/progress-card/progr
 import { CalendarCardComponent } from 'src/app/shared/boards/calendar-card/calendar-card.component';
 import { OverviewCardComponent } from 'src/app/shared/boards/overview-card/overview-card.component';
 import { HeaderComponent } from 'src/app/shared/core/header/header.component';
+import { HistorialComponent } from './components/historial/historial.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     NewTransactionComponent,
-    NewCreditCardComponent
+    NewCreditCardComponent,
+    HistorialComponent
     ],
   imports: [
     CommonModule,
