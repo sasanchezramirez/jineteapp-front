@@ -95,7 +95,7 @@ export class HomeComponent {
     const filteredTransactions = transactionsList.filter((transaction: { typeOfTransactionId: number }) => transaction.typeOfTransactionId === 1);
     const totalAmount = filteredTransactions.reduce((acc: number, transaction: { amount: number }) => acc + transaction.amount, 0);
 
-    this.puntosColombia = (totalAmount / 3300) * 6;
+    this.puntosColombia = Math.round((totalAmount / 3300) * 6);
   }
 
   updateLosses(){

@@ -3,33 +3,29 @@
 </app-sidebar>
 
 <div class="main-content" [class.active]="!isSidebarActive">
+  <app-header></app-header>
+
   <div class="grid-container">
+    <app-general-information></app-general-information>
+    <app-progress-card
+    [progressBarValue]="progressBarValue"
+    [creditCardName]="creditCard.name"
+    ></app-progress-card>
+    <app-calendar-card
+    [currentMonth]="currentMonth"
+    [weekDays]="weekDays"
+    [daysInMonth]="daysInMonth"
+    >
 
-    <div class="grid-item">
-      <label for="progressBar">Progress with {{creditCard.name}}</label>
-      <progress id="progressBar" [value]="progressBarValue" max="100"></progress>
-      <span>{{ progressBarValue }}%</span>
-    </div>
-
-    <div class="grid-item">Puntos Colombia:
-      <h1>{{ puntosColombia | number:'1.0-0' }}</h1>
-    </div>
-
-    <div class="grid-item">
-      <h3>Calendario de Pagos - {{ currentMonth | date: 'MMMM y' }}</h3>
-      <div class="calendar">
-        <div class="day" *ngFor="let day of weekDays">{{ day }}</div>
-          <div class="day" *ngFor="let day of daysInMonth" [ngStyle]="{'background-color': day.backgroundColor}">
-            {{ day.date | date: 'dd' }}
-          </div>
-      </div>
-    </div>
-
-    <div class="grid-item"> Losses with jineteos:
-      <h1>{{totalLosses | number: '1.0-0' }}</h1>
-    </div>
-    <div class="grid-item full-width">
-    </div>
+    </app-calendar-card>
+    <app-overview-card
+    [puntosColombia]="puntosColombia"
+    [totalLosses]="totalLosses"
+    ></app-overview-card>
   </div>
 </div>
+
+
+
+
 

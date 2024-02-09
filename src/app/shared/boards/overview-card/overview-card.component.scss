@@ -1,0 +1,36 @@
+@import '/src/styles/variables.scss';
+
+.icon{
+  margin-right: 10%;
+}
+
+.grid-item {
+  max-width: 300px;
+  min-height: 150px;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+
+  color: map-get($colors, text-primary);
+  font-size: larger;
+  margin: 2rem auto;
+
+
+  &.h1{
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-overview{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .value{
+    margin: 0;
+    margin-left: 10%;
+  }
+}
+

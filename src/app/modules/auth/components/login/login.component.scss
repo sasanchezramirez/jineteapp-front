@@ -1,33 +1,36 @@
+@import '/src/styles/variables.scss';
+
+
 .body {
   display: grid;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #181c2a;
 }
 
 .login-box {
   width: 350px;
   padding: 35px;
-  background-color: #232a3a;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #fff;
+  color: map-get($map: $colors, $key: text-primary);
 }
 
 .label-input{
-  font-size: 12px;
+  font-size: large;
 }
 
 .input{
   width: 100%;
   padding: 10px;
+  border-style: solid;
+
   margin-bottom: 10px;
-  border: none;
   border-radius: 5px;
-  background-color: #2f3b4c;
-  color: #fff;
+  border-color: map-get($map: $colors, $key: text-secondary);
+  background-color: map-get($map: $colors, $key: secondary);
+  color: map-get($map: $colors, $key: text-primary);
   box-sizing: border-box;
   font-size: 13px;
 
@@ -57,7 +60,7 @@
   }
 }
 .submit-button:hover {
-  background-color: #464c5c;
+  background-color: map-get($map: $colors, $key: accent-secondary);
 }
 .loader-container{
   display: flex;
@@ -66,7 +69,8 @@
 }
 
 .register-link{
-  color: #fff;
+  color: map-get($map: $colors, $key: text-primary);
+
   display: flex;
   justify-content: center;
   margin-top: 3%;

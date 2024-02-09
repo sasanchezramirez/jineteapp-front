@@ -1,12 +1,17 @@
+@import '/src/styles/variables.scss';
+
 .navbar-vertical {
-  justify-content: space-between;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  justify-content: center; // Centra los elementos verticalmente
+  align-items: center; // Centra los elementos horizontalmente
   flex-direction: column;
   position: fixed;
   display: flex;
   left: 0;
-  width: 250px; // Ancho del sidebar
+  width: 80px; // Ancho del sidebar
   height: 100%;
-  background: #0e1018;
+  background: map-get($colors, primary-dark);
   margin-top: -12px;
   padding-top: 12px;
   transition: transform 0.3s;
@@ -40,7 +45,8 @@
     font-size: larger;
 
     &:hover {
-      background: darken(#333, 10%);
+      background: map-get($map: $colors, $key: accent-secondary);
+      border-radius: 20%;
     }
   }
   .sing-out{
@@ -50,10 +56,10 @@
     padding: 10px;
     color: white;
     text-decoration: none;
-    font-size: larger;
 
     &:hover {
-      background: darken(#333, 10%);
+      background: map-get($map: $colors, $key: accent-primary);
+      border-radius: 20%;
     }
   }
 }

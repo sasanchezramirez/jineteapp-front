@@ -1,0 +1,81 @@
+@import '/src/styles/variables.scss';
+
+.grid-item {
+  max-width: 300px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row; // Cambiado de row a column para centrar el contenido
+  justify-content: center; // Asegura la alineación vertical al centro
+  align-items: center; // Asegura la alineación horizontal al centro
+  color: map-get($colors, text-primary);
+  font-size: larger;
+  margin: 2rem auto; // Cambiado para centrar el elemento horizontalmente en el contenedor
+  gap: 2rem;
+
+  .button{
+    background: none;
+    border: none;
+    padding: none;
+
+
+  }
+
+  .tittle{
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .new-credit-card{
+    border-radius: 10px; // Hace que el elemento tenga esquinas redondeadas
+    max-width: 150px;
+    min-width: 100px;
+    min-height: 200px;
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Asegura la alineación vertical al centro
+    align-items: center; // Asegura la alineación horizontal al centro
+    cursor: pointer;
+
+    &:hover {
+      border-color: map-get($map: $colors, $key: accent-primary);
+    }
+
+  }
+  .card{
+    border-radius: 10px; // Hace que el elemento tenga esquinas redondeadas
+    max-width: 150px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Asegura la alineación vertical al centro
+    align-items: center; // Asegura la alineación horizontal al centro
+    color: map-get($colors, text-white);
+    background-color: map-get($colors, accent-secondary);
+
+    .progress-circle {
+      margin-bottom: 10%;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+
+    }
+
+    .progress-circle-back{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: stroke-dashoffset 0.5s;
+      stroke-linecap: round;
+    }
+    .progress-circle-progress {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: stroke-dashoffset 0.5s;
+      stroke-linecap: round;
+      stroke: map-get($map: $colors, $key: accent-primary);
+
+    }
+  }
+}
+

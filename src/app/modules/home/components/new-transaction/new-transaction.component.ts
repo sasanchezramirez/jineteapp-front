@@ -76,7 +76,7 @@ export class NewTransactionComponent {
       error => {
         console.error('There was an error getting your credit cards: ', error);
       },
-    )
+    );
     this.jinetepService.getTypesOfJineteo().subscribe(
       jineteoOptions => {
         if (jineteoOptions.success){
@@ -89,7 +89,7 @@ export class NewTransactionComponent {
       error => {
         console.error('There was an error getting jineteo types: ', error);
       }
-    )
+    );
   }
 
   toggleAccordion(formId: string) {
@@ -98,6 +98,14 @@ export class NewTransactionComponent {
 
   handleSidebarToggle(isSidebarActive: boolean){
     this.isSidebarActive = isSidebarActive;
+  }
+
+  fillAmount(value: number): void {
+    this.jineteo.amount = value;
+  }
+
+  fillLosses(value: number): void {
+    this.jineteo.losses = value;
   }
 
 

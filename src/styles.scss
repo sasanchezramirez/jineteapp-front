@@ -1,5 +1,7 @@
+@import '/src/styles/variables.scss';
+
 .body {
-  background-color: #181c2a;
+  background-color: map-get($colors, secondary);
   font-family: 'Inconsolata', monospace;
   margin-top: 0;
   padding-top: 0;
