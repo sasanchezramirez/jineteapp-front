@@ -10,7 +10,7 @@
 
   .logo-section {
     display: flex;
-    align-items: center;s
+    align-items: center;
 
     .logo-text {
       font-size: x-large;
@@ -28,6 +28,17 @@
 
 
   .actions-container {
+    flex-direction: row;
+    display: flex;
+
+    .refresh{
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      vertical-align: center;
+    }
+
     button {
       background: none;
       border: none;

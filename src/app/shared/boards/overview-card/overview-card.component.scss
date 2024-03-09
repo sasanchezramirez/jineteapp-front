@@ -5,14 +5,13 @@
 }
 
 .grid-item {
-  max-width: 300px;
-  min-height: 150px;
+
   border-radius: 8px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-
+align-items: center;
   color: map-get($colors, text-primary);
   font-size: larger;
   margin: 2rem auto;
@@ -22,15 +21,19 @@
     align-items: center;
     justify-content: center;
   }
-
   .item-overview{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 15%; /* Esto asegura que el elemento .value esté al final (a toda la derecha) del contenedor */
+
+
   }
   .value{
     margin: 0;
-    margin-left: 10%;
+    margin-left: auto;
+    margin-right: 15%; /* Esto asegura que el elemento .value esté al final (a toda la derecha) del contenedor */
   }
 }
 

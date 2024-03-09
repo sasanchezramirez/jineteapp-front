@@ -12,6 +12,7 @@ export class HomeComponent {
   public creditCard: CreditCard;
   public isSidebarActive = false;
   public progressBarValue: number = 0;
+  public progressPaymentBarValue: number = 0;
   public creditCardId: number = 0;
   public userId: string = localStorage.getItem('userId') || '';
   public puntosColombia: number = 0;
@@ -22,6 +23,7 @@ export class HomeComponent {
   public weekDays = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
   public dailyPaymentAmount: number = 0;
   public paymentPlan: { [key: number]: number } = {};
+  public balancePcoLosses: number = 0;
 
 
 
@@ -42,6 +44,7 @@ export class HomeComponent {
     this.getTransactions();
     this.updatePuntosColombia();
     this.updateLosses();
+    this.updateBalancePcoLosses();
   }
 
   getTransactions(){
@@ -67,6 +70,7 @@ export class HomeComponent {
           localStorage.setItem(cardKey, JSON.stringify(firstCard));
           this.updateProgressBar();
           this.determineCalendarMonth();
+          this.updatePaymentProgressBar();
         }
       }
     });
@@ -79,7 +83,14 @@ export class HomeComponent {
 
   updateProgressBar() {
     const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
-    const totalTransactions = transactionsList.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
+    const currentMonth = new Date().getMonth() + 1; // Mes actual (Enero = 1, Diciembre = 12)
+    const currentYear = new Date().getFullYear(); // Año actual
+    const filteredTransactions = transactionsList.filter((transaction: any)  => {
+      const transactionMonth = new Date(transaction.date).getMonth() + 1;
+      const transactionYear = new Date(transaction.date).getFullYear();
+      return transactionMonth === currentMonth && transactionYear === currentYear;
+    });
+    const totalTransactions = filteredTransactions.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
 
     const creditCardData = JSON.parse(localStorage.getItem(`CreditCard_${this.creditCardId}`) || '{}');
     console.log(this.creditCardId);
@@ -87,6 +98,18 @@ export class HomeComponent {
       this.progressBarValue = Math.round((totalTransactions / creditCardData.balance) * 100 * 100) / 100;
     } else {
       this.progressBarValue = 0;
+    }
+  }
+
+  updatePaymentProgressBar(){
+    const balance = this.creditCard.balance;
+    const availability = this.creditCard.availability;
+    console.log(balance, availability);
+
+    if (this.creditCard.balance && this.creditCard.availability > 0){
+      this.progressPaymentBarValue = Math.round(((availability - balance)/availability) * 100 * 100) / 100;
+    } else {
+      this.progressPaymentBarValue = 0;
     }
   }
 
@@ -104,6 +127,10 @@ export class HomeComponent {
     const totalAmount = filteredTransactions.reduce((acc: number, transaction: { losses: number }) => acc + transaction.losses, 0);
 
     this.totalLosses = totalAmount;
+  }
+
+  updateBalancePcoLosses(){
+     this.balancePcoLosses = (this.puntosColombia * 7) - this.totalLosses
   }
 
   generateCalendarDays(date: Date) {
@@ -243,31 +270,6 @@ getPaymentAmountForDay(date: Date): number {
     this.calculatePaymentPlan();
 
   }
-
-
-
-
-
-
-
-  pieChartData: ChartData<'pie'> = {
-    datasets: [{
-      data: [120, 150, 180, 90],
-      backgroundColor: [
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)'  // Blanco
-      ],
-      hoverBackgroundColor: [ // Colores al pasar el mouse (opcional)
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)'
-      ]
-    }]
-  };
-  pieChartType: ChartType = 'pie';
 
 }
 

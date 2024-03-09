@@ -10,5 +10,7 @@ import { Component, Input } from '@angular/core';
 export class OverviewCardComponent {
 @Input() puntosColombia: number = 0;
 @Input() totalLosses: number = 0;
+@Input() balancePcoLosses: number = 0;
+
 
 }

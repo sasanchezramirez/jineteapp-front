@@ -6,22 +6,34 @@
   <app-header></app-header>
 
   <div class="grid-container">
-    <app-general-information></app-general-information>
+
+    <div class="column">
+      <div class="basic-information">
+        <app-general-information
+        [cardName]="creditCard.name"></app-general-information>
+      </div>
+      <app-overview-card
+      [puntosColombia]="puntosColombia"
+      [totalLosses]="totalLosses"
+      [balancePcoLosses]="balancePcoLosses"
+      ></app-overview-card>
+    </div>
+
+  <div class="column">
     <app-progress-card
     [progressBarValue]="progressBarValue"
     [creditCardName]="creditCard.name"
-    ></app-progress-card>
+    [progressPaymentBarValue]="progressPaymentBarValue">
+    </app-progress-card>
+
     <app-calendar-card
     [currentMonth]="currentMonth"
     [weekDays]="weekDays"
-    [daysInMonth]="daysInMonth"
-    >
-
+    [daysInMonth]="daysInMonth">
     </app-calendar-card>
-    <app-overview-card
-    [puntosColombia]="puntosColombia"
-    [totalLosses]="totalLosses"
-    ></app-overview-card>
+  </div>
+
+
   </div>
 </div>
 

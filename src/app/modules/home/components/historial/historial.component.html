@@ -1,0 +1,41 @@
+<app-sidebar
+(sidebarToggle)="handleSidebarToggle($event)">
+</app-sidebar>
+
+
+<div class="main-content" [class.active]="!isSidebarActive">
+  <div class="pagination-controls">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&laquo; Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &raquo;</button>
+  </div>
+
+  <div class="historial-container">
+    <h2>Transaction History</h2>
+    <table class="transactions-table">
+      <thead>
+        <tr>
+          <th>Credit Card</th>
+          <th>Type of Jineteo</th>
+          <th>Type of Transaction</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Observation</th>
+          <th>Losses</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of paginatedTransactions">
+          <td>{{ getCreditCardName(transaction.creditCardId)?.name || 'Unknown Card' }}</td>
+          <td>{{ getJIneteoType(transaction.typeOfJineteoId)?.description || 'Unknown Jineteo' }}</td>
+          <td>{{ transaction.typeOfTransactionId }}</td>
+          <td>{{ transaction.amount | currency }}</td>
+          <td>{{ transaction.date | date:'mediumDate' }}</td>
+          <td>{{ transaction.observation }}</td>
+          <td>{{ transaction.losses | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
