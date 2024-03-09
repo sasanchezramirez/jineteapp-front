@@ -12,6 +12,7 @@ export class HomeComponent {
   public creditCard: CreditCard;
   public isSidebarActive = false;
   public progressBarValue: number = 0;
+  public progressPaymentBarValue: number = 0;
   public creditCardId: number = 0;
   public userId: string = localStorage.getItem('userId') || '';
   public puntosColombia: number = 0;
@@ -67,6 +68,7 @@ export class HomeComponent {
           localStorage.setItem(cardKey, JSON.stringify(firstCard));
           this.updateProgressBar();
           this.determineCalendarMonth();
+          this.updatePaymentProgressBar();
         }
       }
     });
@@ -87,6 +89,18 @@ export class HomeComponent {
       this.progressBarValue = Math.round((totalTransactions / creditCardData.balance) * 100 * 100) / 100;
     } else {
       this.progressBarValue = 0;
+    }
+  }
+
+  updatePaymentProgressBar(){
+    const balance = this.creditCard.balance;
+    const availability = this.creditCard.availability;
+    console.log(balance, availability);
+
+    if (this.creditCard.balance && this.creditCard.availability > 0){
+      this.progressPaymentBarValue = Math.round(((availability - balance)/availability) * 100 * 100) / 100;
+    } else {
+      this.progressPaymentBarValue = 0;
     }
   }
 
