@@ -7,8 +7,8 @@
 
   <div class="grid-container">
     <div class="basic-information">
-      <app-general-information></app-general-information>
-      <app-general-information></app-general-information>
+      <app-general-information
+      [cardName]="creditCard.name"></app-general-information>
     </div>
     <app-progress-card
     [progressBarValue]="progressBarValue"
