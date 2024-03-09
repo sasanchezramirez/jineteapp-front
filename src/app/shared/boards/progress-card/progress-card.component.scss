@@ -23,12 +23,13 @@
   .tittle{
     padding-left: 5%;
     padding-right: 5%;
+    font-size: larger;
   }
   .new-credit-card{
     border-radius: 10px; // Hace que el elemento tenga esquinas redondeadas
     max-width: 150px;
     min-width: 100px;
-    min-height: 200px;
+    height: auto;
     border-style: dashed;
     display: flex;
     flex-direction: column;
@@ -43,8 +44,8 @@
   }
   .card{
     border-radius: 10px; // Hace que el elemento tenga esquinas redondeadas
-    max-width: 150px;
     height: 100%;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center; // Asegura la alineación vertical al centro
@@ -79,7 +80,7 @@
   }
   .payment-card{
     border-radius: 10px; // Hace que el elemento tenga esquinas redondeadas
-    max-width: 150px;
+    min-width: 150px;
     height: 100%;
     display: flex;
     flex-direction: column;

@@ -1,7 +1,5 @@
 @import '/src/styles/variables.scss';
 
-
-
 .main-content {
   padding: 2rem;
   transition: margin-left 0.5s;
@@ -12,22 +10,29 @@
   }
 
   .grid-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); // Configura 2 elementos por fila
+    display: flex;
     gap: 2rem;
     justify-content: center;
 
-    .basic-information{
-      display: grid;
-      grid-template-rows: repeat(2, 1fr); // Configura 2 elementos por fila
-      gap: 2rem;
-      justify-content: center;
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // Se pueden agregar estilos específicos para cada fila aquí
       }
+    }
 
     @media (max-width: 768px) {
-      // En pantallas más pequeñas, cada elemento de la cuadrícula toma el ancho completo
-      .grid-container {
-        grid-template-columns: 1fr; // Configura 1 elemento por fila en pantallas pequeñas
+      flex-direction: column;
+      align-items: center;
+
+      .column {
+        width: 100%;
       }
     }
   }

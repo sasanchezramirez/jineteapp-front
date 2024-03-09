@@ -20,6 +20,9 @@ export class ProgressCardComponent {
   }
   public get paymentProgressOffset(): number {
     return this.circumference - (this.progressPaymentBarValue / 100) * this.circumference;
+  }
 
+  goToNewCreditCard(){
+    window.location.href = '/new-credit-card';
   }
 }
