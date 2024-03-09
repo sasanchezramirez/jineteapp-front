@@ -23,6 +23,7 @@ export class HomeComponent {
   public weekDays = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
   public dailyPaymentAmount: number = 0;
   public paymentPlan: { [key: number]: number } = {};
+  public balancePcoLosses: number = 0;
 
 
 
@@ -43,6 +44,7 @@ export class HomeComponent {
     this.getTransactions();
     this.updatePuntosColombia();
     this.updateLosses();
+    this.updateBalancePcoLosses();
   }
 
   getTransactions(){
@@ -125,6 +127,10 @@ export class HomeComponent {
     const totalAmount = filteredTransactions.reduce((acc: number, transaction: { losses: number }) => acc + transaction.losses, 0);
 
     this.totalLosses = totalAmount;
+  }
+
+  updateBalancePcoLosses(){
+     this.balancePcoLosses = (this.puntosColombia * 7) - this.totalLosses
   }
 
   generateCalendarDays(date: Date) {
@@ -264,31 +270,6 @@ getPaymentAmountForDay(date: Date): number {
     this.calculatePaymentPlan();
 
   }
-
-
-
-
-
-
-
-  pieChartData: ChartData<'pie'> = {
-    datasets: [{
-      data: [120, 150, 180, 90],
-      backgroundColor: [
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)', // Blanco
-        'rgba(255, 255, 255, 0.8)'  // Blanco
-      ],
-      hoverBackgroundColor: [ // Colores al pasar el mouse (opcional)
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)'
-      ]
-    }]
-  };
-  pieChartType: ChartType = 'pie';
 
 }
 
