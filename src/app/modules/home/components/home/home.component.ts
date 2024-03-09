@@ -81,7 +81,14 @@ export class HomeComponent {
 
   updateProgressBar() {
     const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
-    const totalTransactions = transactionsList.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
+    const currentMonth = new Date().getMonth() + 1; // Mes actual (Enero = 1, Diciembre = 12)
+    const currentYear = new Date().getFullYear(); // Año actual
+    const filteredTransactions = transactionsList.filter((transaction: any)  => {
+      const transactionMonth = new Date(transaction.date).getMonth() + 1;
+      const transactionYear = new Date(transaction.date).getFullYear();
+      return transactionMonth === currentMonth && transactionYear === currentYear;
+    });
+    const totalTransactions = filteredTransactions.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
 
     const creditCardData = JSON.parse(localStorage.getItem(`CreditCard_${this.creditCardId}`) || '{}');
     console.log(this.creditCardId);
