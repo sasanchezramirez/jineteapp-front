@@ -6,7 +6,10 @@
   <app-header></app-header>
 
   <div class="grid-container">
-    <app-general-information></app-general-information>
+    <div class="basic-information">
+      <app-general-information></app-general-information>
+      <app-general-information></app-general-information>
+    </div>
     <app-progress-card
     [progressBarValue]="progressBarValue"
     [creditCardName]="creditCard.name"
