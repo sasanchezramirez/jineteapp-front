@@ -24,6 +24,9 @@ export class HomeComponent {
   public dailyPaymentAmount: number = 0;
   public paymentPlan: { [key: number]: number } = {};
   public balancePcoLosses: number = 0;
+  public currentMonthIndex: number = new Date().getMonth();
+  public months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
 
 
 
@@ -68,7 +71,7 @@ export class HomeComponent {
           this.creditCardId = Number(firstCard.id);
           const cardKey = `CreditCard_${firstCard.id}`;
           localStorage.setItem(cardKey, JSON.stringify(firstCard));
-          this.updateProgressBar();
+          this.updateProgressBar(this.currentMonthIndex);
           this.determineCalendarMonth();
           this.updatePaymentProgressBar();
         }
@@ -81,14 +84,14 @@ export class HomeComponent {
     this.isSidebarActive = isSidebarActive;
   }
 
-  updateProgressBar() {
+  updateProgressBar(selectedMonthIndex: number): void {
+    // La lógica de la función se actualiza para usar `selectedMonthIndex` en lugar de obtener el mes actual directamente
     const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
-    const currentMonth = new Date().getMonth() + 1; // Mes actual (Enero = 1, Diciembre = 12)
     const currentYear = new Date().getFullYear(); // Año actual
-    const filteredTransactions = transactionsList.filter((transaction: any)  => {
-      const transactionMonth = new Date(transaction.date).getMonth() + 1;
+    const filteredTransactions = transactionsList.filter((transaction: any) => {
+      const transactionMonth = new Date(transaction.date).getMonth();
       const transactionYear = new Date(transaction.date).getFullYear();
-      return transactionMonth === currentMonth && transactionYear === currentYear;
+      return transactionMonth === selectedMonthIndex && transactionYear === currentYear;
     });
     const totalTransactions = filteredTransactions.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
 
@@ -269,6 +272,21 @@ getPaymentAmountForDay(date: Date): number {
 
     this.calculatePaymentPlan();
 
+  }
+
+
+  moveCarousel(direction: number): void {
+    this.currentMonthIndex += direction;
+    if (this.currentMonthIndex < 0) {
+      this.currentMonthIndex = this.months.length - 1;
+    } else if (this.currentMonthIndex >= this.months.length) {
+      this.currentMonthIndex = 0;
+    }
+    this.updateProgressBar(this.currentMonthIndex);  // Asegúrate de actualizar la barra de progreso cuando cambie el mes
+  }
+
+  getCurrentMonth(): string {
+    return this.months[this.currentMonthIndex];
   }
 
 }

@@ -8,6 +8,11 @@
   <div class="grid-container">
 
     <div class="column">
+      <div class="carousel-container">
+        <button (click)="moveCarousel(-1)">←</button>
+        <span>{{ getCurrentMonth() }}</span>
+        <button (click)="moveCarousel(1)">→</button>
+      </div>
       <div class="basic-information">
         <app-general-information
         [cardName]="creditCard.name"></app-general-information>
