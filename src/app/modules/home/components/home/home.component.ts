@@ -25,8 +25,8 @@ export class HomeComponent {
   public paymentPlan: { [key: number]: number } = {};
   public balancePcoLosses: number = 0;
   public currentMonthIndex: number = new Date().getMonth();
-  public months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
+  public months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  public allTransactions : boolean = false;
 
 
 
@@ -45,9 +45,9 @@ export class HomeComponent {
 
   ngOnInit(){
     this.getTransactions();
-    this.updatePuntosColombia();
-    this.updateLosses();
-    this.updateBalancePcoLosses();
+    this.updatePuntosColombia(this.currentMonthIndex);
+    this.updateLosses(this.currentMonthIndex);
+    this.updateBalancePcoLosses(this.currentMonthIndex);
   }
 
   getTransactions(){
@@ -85,7 +85,6 @@ export class HomeComponent {
   }
 
   updateProgressBar(selectedMonthIndex: number): void {
-    // La lógica de la función se actualiza para usar `selectedMonthIndex` en lugar de obtener el mes actual directamente
     const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
     const currentYear = new Date().getFullYear(); // Año actual
     const filteredTransactions = transactionsList.filter((transaction: any) => {
@@ -115,25 +114,42 @@ export class HomeComponent {
       this.progressPaymentBarValue = 0;
     }
   }
-
-  updatePuntosColombia(){
-    const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
+  updatePuntosColombia(selectedMonthIndex: number){
+    const currentYear = new Date().getFullYear();
+    let transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
+    if (!this.allTransactions) {
+      transactionsList = transactionsList.filter((transaction: { date: string }) => {
+        const transactionMonth = new Date(transaction.date).getMonth();
+        const transactionYear = new Date(transaction.date).getFullYear();
+        return transactionMonth === selectedMonthIndex && transactionYear === currentYear;
+      });
+    }
     const filteredTransactions = transactionsList.filter((transaction: { typeOfTransactionId: number }) => transaction.typeOfTransactionId === 1);
     const totalAmount = filteredTransactions.reduce((acc: number, transaction: { amount: number }) => acc + transaction.amount, 0);
 
     this.puntosColombia = Math.round((totalAmount / 3300) * 6);
   }
 
-  updateLosses(){
-    const transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
+  updateLosses(selectedMonthIndex: number){
+    const currentYear = new Date().getFullYear();
+    let transactionsList = JSON.parse(localStorage.getItem('TransactionsList') || '{}').transactionDtoList || [];
+    if (!this.allTransactions) {
+      transactionsList = transactionsList.filter((transaction: { date: string }) => {
+        const transactionMonth = new Date(transaction.date).getMonth();
+        const transactionYear = new Date(transaction.date).getFullYear();
+        return transactionMonth === selectedMonthIndex && transactionYear === currentYear;
+      });
+    }
     const filteredTransactions = transactionsList.filter((transaction: { typeOfTransactionId: number }) => transaction.typeOfTransactionId === 1);
-    const totalAmount = filteredTransactions.reduce((acc: number, transaction: { losses: number }) => acc + transaction.losses, 0);
+    const totalAmount = filteredTransactions.reduce((acc: number, transaction: { losses: number }) => acc + (transaction.losses || 0), 0);
 
     this.totalLosses = totalAmount;
   }
 
-  updateBalancePcoLosses(){
-     this.balancePcoLosses = (this.puntosColombia * 7) - this.totalLosses
+  updateBalancePcoLosses(selectedMonthIndex: number){
+    this.updatePuntosColombia(selectedMonthIndex);
+    this.updateLosses(selectedMonthIndex);
+    this.balancePcoLosses = (this.puntosColombia * 7) - this.totalLosses;
   }
 
   generateCalendarDays(date: Date) {
@@ -282,11 +298,23 @@ getPaymentAmountForDay(date: Date): number {
     } else if (this.currentMonthIndex >= this.months.length) {
       this.currentMonthIndex = 0;
     }
-    this.updateProgressBar(this.currentMonthIndex);  // Asegúrate de actualizar la barra de progreso cuando cambie el mes
+    this.updateProgressBar(this.currentMonthIndex);
+    this.updatePuntosColombia(this.currentMonthIndex);
+    this.updateLosses(this.currentMonthIndex);
+    this.updateBalancePcoLosses(this.currentMonthIndex); // Asegúrate de actualizar la barra de progreso cuando cambie el mes
   }
 
   getCurrentMonth(): string {
     return this.months[this.currentMonthIndex];
+  }
+
+  handleAllTransactionsChange() {
+    this.allTransactions = !this.allTransactions;
+    // Llama a los métodos que necesitan ser actualizados cuando allTransactions cambia
+    this.updatePuntosColombia(this.currentMonthIndex);
+    this.updateLosses(this.currentMonthIndex);
+    this.updateBalancePcoLosses(this.currentMonthIndex);
+    // Cualquier otro método que necesite ser actualizado
   }
 
 }

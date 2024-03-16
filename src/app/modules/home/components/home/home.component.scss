@@ -9,6 +9,83 @@
     margin-left: 0; // Tamaño del sidebar cerrado
   }
 
+  .filter-container{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 5%;
+    align-items: center;
+
+    .carousel-container{
+      display: flex;
+      margin-bottom: -3%;
+      font-size: larger;
+
+      & button{
+        margin-right: 2%;
+        margin-left: 2%;
+        background-color: transparent;
+        color: map-get($map: $colors, $key: accent-primary);
+        border: none;
+        padding: 0;
+        font-size: x-large;
+        cursor: pointer;
+
+      }
+
+      & span{
+        padding: 5%;
+        border-radius: 20%;
+        border-style: solid;
+        border-color: map-get($map: $colors, $key: accent-secondary);
+      }
+    }
+
+
+    .carousel-container.grey-out{
+      color: map-get($map: $colors, $key: tertiary);
+
+      // Si quieres que todos los elementos dentro también se vuelvan grises, puedes usar el comodín *
+      * {
+        color: map-get($map: $colors, $key: tertiary); // Cambia el color del texto de todos los elementos internos
+        border-color: map-get($map: $colors, $key: tertiary);// Cambia el color del texto a un gris más oscuro para contraste
+
+      }
+
+      // Para botones específicos dentro, puedes ajustar su estilo directamente
+      button {
+        color: map-get($map: $colors, $key: tertiary);
+        cursor: auto;
+      }
+    }
+
+    .historial-checkbox{
+      display: flex;
+      margin-bottom: -3%;
+      font-size: larger;
+      align-items: center;
+      gap: 0.5rem;
+
+      & input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 2em;
+        height: 2em;
+        border: 2px solid map-get($map: $colors, $key: accent-secondary);
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:checked {
+          background-color: map-get($map: $colors, $key: accent-primary);
+        }
+      }
+    }
+
+  }
+
+
+
   .grid-container {
     display: flex;
     gap: 2rem;

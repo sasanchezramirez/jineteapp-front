@@ -8,15 +8,23 @@
   <div class="grid-container">
 
     <div class="column">
-      <div class="carousel-container">
-        <button (click)="moveCarousel(-1)">←</button>
-        <span>{{ getCurrentMonth() }}</span>
-        <button (click)="moveCarousel(1)">→</button>
+      <div class = "filter-container">
+        <div class="carousel-container" [class.grey-out]="allTransactions">
+          <button (click)="moveCarousel(-1)" [disabled]="allTransactions">←</button>
+          <span [class.grey-out-text]="allTransactions">{{ getCurrentMonth() }}</span>
+          <button (click)="moveCarousel(1)" [disabled]="allTransactions">→</button>
+        </div>
+        <div class="historial-checkbox">
+          <input type="checkbox" id="allHistorial" (change)="handleAllTransactionsChange()">
+          <label for="allHistorial">All</label>
+        </div>
       </div>
+
       <div class="basic-information">
         <app-general-information
         [cardName]="creditCard.name"></app-general-information>
       </div>
+
       <app-overview-card
       [puntosColombia]="puntosColombia"
       [totalLosses]="totalLosses"
