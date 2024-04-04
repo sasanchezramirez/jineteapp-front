@@ -93,7 +93,7 @@ export class HomeComponent {
       return transactionMonth === selectedMonthIndex && transactionYear === currentYear;
     });
     const totalTransactions = filteredTransactions.reduce((acc: number, transaction: { amount: number; losses?: number }) => acc + transaction.amount - (transaction.losses || 0), 0);
-
+    console.log("total transacoins:", totalTransactions)
     const creditCardData = JSON.parse(localStorage.getItem(`CreditCard_${this.creditCardId}`) || '{}');
     console.log(this.creditCardId);
     if (creditCardData && creditCardData.balance > 0) {
